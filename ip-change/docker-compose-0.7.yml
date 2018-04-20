@@ -2,7 +2,7 @@ version: "2"
 
 services:
   server:
-    image: ${CONSUL_IMAGE}
+    image: 0.7.4
     command: agent
     environment:
       CONSUL_BIND_INTERFACE: eth0
@@ -16,7 +16,7 @@ services:
         ipv4_address: ${NETWORK_PREFIX}.254
 
   client:
-    image: ${CONSUL_CLIENT_IMAGE}
+    image: 0.7.4
     command: agent
     depends_on:
       - server

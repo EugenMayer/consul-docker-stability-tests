@@ -1,0 +1,7 @@
+version: "2"
+
+services:
+  server:
+    networks:
+      default:
+        ipv4_address: ${NETWORK_PREFIX}.50

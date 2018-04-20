@@ -15,6 +15,8 @@ We do this here for raft2, so jus the ip
 
     ["10.50.50.50:8300"]
     
+**IMPORTANT**: you _have_ to add the port, or it will silently fail.    
+    
 Then we restart the consul server then and since the "peers" available are overriden, the old IP1 leader has been removed. Thus, since we use `bootstrap=1`
 as config ( cluster with one server only ) the server becomes leader again.
 

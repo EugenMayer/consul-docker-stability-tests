@@ -15,3 +15,8 @@ This even works with only one cluster leader.
 
 This test should ensure that node-ids are no longer getting in our way as with < 0.8.5 where they have been automatically
 generated using the host-hardware, which leads to all the same node-ids when running on the same docker-engine and thus to issues.
+
+### 3. ACLs
+
+With 0.7.3+ the ACL system changed, forced with 0.9.x. The question is, how to use `gossip` and lock-down the entire instance ( no anon reads )
+and have each client registerd with the server and be able to read/write KVs, register service checks

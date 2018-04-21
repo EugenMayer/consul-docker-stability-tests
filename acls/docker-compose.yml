@@ -1,0 +1,57 @@
+version: "2"
+
+services:
+  server:
+    image: consul:1.0.7
+    command: agent
+    environment:
+      CONSUL_BIND_INTERFACE: eth0
+    volumes:
+      - ./consul-config/server_config.json:/consul/config/server_config.json
+      - consul-server-data:/consul/data:rw
+    ports:
+      - "8500:8500"
+    networks:
+      default:
+        ipv4_address: ${NETWORK_PREFIX}.254
+
+  client1:
+    image: consul:1.0.7
+    command: agent
+    depends_on:
+      - server
+    volumes:
+      - ./consul-config/agent_config-client1.json:/consul/config/agent_config.json
+      - consul-client1-data:/consul/data:rw
+    networks:
+      - default
+
+  client2:
+    image: consul:1.0.7
+    command: agent
+    depends_on:
+      - server
+    volumes:
+      - ./consul-config/agent_config-client2.json:/consul/config/agent_config.json
+      - consul-client2-data:/consul/data:rw
+    networks:
+      - default
+volumes:
+  logs:
+    driver: local
+  consul-server-data:
+    driver: local
+  consul-client1-data:
+    driver: local
+  consul-client2-data:
+    driver: local
+  consul-config:
+    driver: local
+  db:
+    driver: local
+
+networks:
+  default:
+    ipam:
+      config:
+        - subnet: ${NETWORK_PREFIX}.0/24

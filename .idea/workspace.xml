@@ -2,15 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e8f9bd25-6f17-408f-bb41-d11fbbb7f607" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/node-ids/.env" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/node-ids/README.md" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/node-ids/consul-config/agent_config-client1.json" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/node-ids/consul-config/agent_config-client2.json" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/node-ids/consul-config/server_config.json" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/node-ids/docker-compose-nodata.yml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/node-ids/docker-compose.yml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/node-ids/test.sh" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/acls/.env" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/acls/README.md" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/acls/consul-config/agent_config-client1.json" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/acls/consul-config/agent_config-client2.json" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/acls/consul-config/server_config.json" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/acls/docker-compose-nodata.yml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/acls/docker-compose.yml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/acls/test.sh" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,16 +23,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="agent_config.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ip-change/consul-config/agent_config.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="1" lean-forward="false" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="docker-compose.yml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/node-ids/docker-compose.yml">
           <provider selected="true" editor-type-id="text-editor">
@@ -42,12 +33,48 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/node-ids/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="225">
-                <caret line="15" column="95" lean-forward="false" selection-start-line="15" selection-start-column="95" selection-end-line="15" selection-end-column="95" />
+              <first_editor relative-caret-position="45">
+                <caret line="3" column="130" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="3" selection-end-column="130" />
+                <folding />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".env" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/acls/.env">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="300">
+                <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="21" selection-end-column="101" />
+                <folding />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/acls/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="120">
+                <caret line="8" column="68" lean-forward="false" selection-start-line="8" selection-start-column="68" selection-end-line="8" selection-end-column="68" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -70,16 +97,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="45">
               <caret line="3" column="37" lean-forward="false" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="server_config.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node-ids/consul-config/server_config.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -110,16 +127,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="15">
               <caret line="1" column="33" lean-forward="false" selection-start-line="1" selection-start-column="33" selection-end-line="1" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".env" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ip-change/.env">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -164,6 +171,8 @@
         <option value="$PROJECT_DIR$/node-ids/docker-compose-nodata.yml" />
         <option value="$PROJECT_DIR$/node-ids/test.sh" />
         <option value="$PROJECT_DIR$/node-ids/README.md" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/acls/README.md" />
       </list>
     </option>
   </component>
@@ -211,18 +220,7 @@
             <path>
               <item name="consul-docker-stability-tests" type="b2602c69:ProjectViewProjectNode" />
               <item name="consul-docker-stability-tests" type="462c0819:PsiDirectoryNode" />
-              <item name="ip-change" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="consul-docker-stability-tests" type="b2602c69:ProjectViewProjectNode" />
-              <item name="consul-docker-stability-tests" type="462c0819:PsiDirectoryNode" />
-              <item name="node-ids" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="consul-docker-stability-tests" type="b2602c69:ProjectViewProjectNode" />
-              <item name="consul-docker-stability-tests" type="462c0819:PsiDirectoryNode" />
-              <item name="node-ids" type="462c0819:PsiDirectoryNode" />
-              <item name="consul-config" type="462c0819:PsiDirectoryNode" />
+              <item name="acls" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -241,6 +239,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/node-ids" />
       <recent name="$PROJECT_DIR$/node-ids/consul-config" />
       <recent name="$PROJECT_DIR$/ip-change" />
@@ -349,12 +348,12 @@
       <option name="presentableId" value="Default" />
       <updated>1524213272182</updated>
       <workItem from="1524213277916" duration="5442000" />
-      <workItem from="1524223955826" duration="8132000" />
+      <workItem from="1524223955826" duration="9111000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13574000" />
+    <option name="totallyTimeSpent" value="14553000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1053" extended-state="0" />
@@ -654,8 +653,38 @@
     <entry file="file://$PROJECT_DIR$/node-ids/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="225">
-            <caret line="15" column="95" lean-forward="false" selection-start-line="15" selection-start-column="95" selection-end-line="15" selection-end-column="95" />
+          <first_editor relative-caret-position="45">
+            <caret line="3" column="130" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="3" selection-end-column="130" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/acls/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="300">
+            <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="21" selection-end-column="101" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/acls/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="120">
+            <caret line="8" column="68" lean-forward="false" selection-start-line="8" selection-start-column="68" selection-end-line="8" selection-end-column="68" />
             <folding />
           </first_editor>
           <second_editor />

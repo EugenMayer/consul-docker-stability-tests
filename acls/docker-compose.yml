@@ -3,12 +3,18 @@ version: "2"
 services:
   server:
     image: consul:1.0.7
-    command: agent
+    entrypoint: "server_setup.sh"
+    command: "agent"
     environment:
       CONSUL_BIND_INTERFACE: eth0
     volumes:
+      - ./bin/server_setup.sh:/usr/local/bin/server_setup.sh
+      - ./bin/server_acl_anon.sh:/usr/local/bin/server_acl_anon.sh
+      - ./bin/server_acl_acl_token.sh:/usr/local/bin/server_acl_acl_token.sh
       - ./consul-config/server_config.json:/consul/config/server_config.json
+      - ./consul-config/server_acl.json:/consul/config/server_acl.json
       - consul-server-data:/consul/data:rw
+      - consul-general-client-configs:/consul/clients-general
     ports:
       - "8500:8500"
     networks:
@@ -17,25 +23,27 @@ services:
 
   client1:
     image: consul:1.0.7
+    entrypoint: client_setup.sh
     command: agent
     depends_on:
       - server
     volumes:
+      - ./bin/client_setup.sh:/usr/local/bin/client_setup.sh
       - ./consul-config/agent_config-client1.json:/consul/config/agent_config.json
-      - consul-client1-data:/consul/data:rw
+      - consul-general-client-configs:/consul/clients-general
     networks:
       - default
 
-  client2:
-    image: consul:1.0.7
-    command: agent
-    depends_on:
-      - server
-    volumes:
-      - ./consul-config/agent_config-client2.json:/consul/config/agent_config.json
-      - consul-client2-data:/consul/data:rw
-    networks:
-      - default
+#  client2:
+#    image: consul:1.0.7
+#    command: agent
+#    depends_on:
+#      - server
+#    volumes:
+#      - ./consul-config/agent_config-client2.json:/consul/config/agent_config.json
+#      - consul-client2-data:/consul/data:rw
+#    networks:
+#      - default
 volumes:
   logs:
     driver: local
@@ -45,7 +53,7 @@ volumes:
     driver: local
   consul-client2-data:
     driver: local
-  consul-config:
+  consul-general-client-configs:
     driver: local
   db:
     driver: local

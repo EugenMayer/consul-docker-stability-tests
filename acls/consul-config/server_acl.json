@@ -1,0 +1,4 @@
+{
+  "acl_datacenter":"stable",
+  "acl_default_policy": "deny"
+}

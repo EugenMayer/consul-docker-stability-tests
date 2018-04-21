@@ -1,7 +1,7 @@
 #!/bin/sh
 
-ENABLE_APK
-
+mkdir -p ${SERVER_CONFIG_STORE}
+mkdir -p ${CLIENTS_CONFIG_STORE}
 
 if [ -z "${ENABLE_APK}" ]; then
 	echo "disabled apk, hopefully you got all those things installed.."

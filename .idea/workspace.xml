@@ -58,17 +58,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test.sh" pinned="false" current-in-tab="false">
+      <file leaf-file-name="test.sh" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/acls/test.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="20" lean-forward="false" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
+            <state relative-caret-position="30">
+              <caret line="2" column="1" lean-forward="false" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="agent_config-client1.json" pinned="false" current-in-tab="true">
+      <file leaf-file-name="agent_config-client1.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/acls/consul-config/agent_config-client1.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
@@ -103,16 +103,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="285">
               <caret line="19" column="84" lean-forward="false" selection-start-line="19" selection-start-column="67" selection-end-line="19" selection-end-column="84" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="client_acl_token.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/acls/consul-config/client_acl_token.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="30" lean-forward="false" selection-start-line="1" selection-start-column="30" selection-end-line="1" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -359,12 +349,12 @@
       <updated>1524213272182</updated>
       <workItem from="1524213277916" duration="5442000" />
       <workItem from="1524223955826" duration="12332000" />
-      <workItem from="1524317548455" duration="7993000" />
+      <workItem from="1524317548455" duration="8172000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25767000" />
+    <option name="totallyTimeSpent" value="25946000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1920" height="977" extended-state="0" />
@@ -707,30 +697,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/acls/consul-config/server_acl_master_token.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="30" lean-forward="false" selection-start-line="1" selection-start-column="30" selection-end-line="1" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/acls/consul-config/server_acl.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="30" lean-forward="false" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/acls/consul-config/client_acl_token.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="30" lean-forward="false" selection-start-line="1" selection-start-column="30" selection-end-line="1" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/acls/bin/server_acl_anon.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -782,18 +748,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/acls/test.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="20" lean-forward="false" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/acls/consul-config/agent_config-client1.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/acls/consul-config/client_acl_token.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="30" lean-forward="false" selection-start-line="1" selection-start-column="30" selection-end-line="1" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/acls/consul-config/server_acl_master_token.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="30" lean-forward="false" selection-start-line="1" selection-start-column="30" selection-end-line="1" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/acls/consul-config/server_acl.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="30" lean-forward="false" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/acls/test.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="1" lean-forward="false" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
           <folding />
         </state>
       </provider>

@@ -34,16 +34,19 @@ services:
     networks:
       - default
 
-#  client2:
-#    image: consul:1.0.7
-#    command: agent
-#    depends_on:
-#      - server
-#    volumes:
-#      - ./consul-config/agent_config-client2.json:/consul/config/agent_config.json
-#      - consul-client2-data:/consul/data:rw
-#    networks:
-#      - default
+  client1:
+    image: consul:1.0.7
+    entrypoint: client_setup.sh
+    command: agent
+    depends_on:
+      - server
+    volumes:
+      - ./bin/client_setup.sh:/usr/local/bin/client_setup.sh
+      - ./consul-config/agent_config-client2.json:/consul/config/agent_config.json
+      - consul-general-client-configs:/consul/clients-general
+    networks:
+      - default
+
 volumes:
   logs:
     driver: local

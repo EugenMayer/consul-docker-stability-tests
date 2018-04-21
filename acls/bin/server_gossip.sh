@@ -10,7 +10,11 @@ fi
 
 echo "enable gossip encryption"
 
-GOSSIP_KEY=`consul keygen`
-echo "{\"encrypt\": \"${GOSSIP_KEY}\"}" > ${SERVER_CONFIG_STORE}/gossip.json
-echo "{\"encrypt\": \"${GOSSIP_KEY}\"}" > ${CLIENTS_CONFIG_STORE}/gossip.json
+if [ ! -f ${SERVER_CONFIG_STORE}/gossip.json ]; then
+	GOSSIP_KEY=`consul keygen`
+	echo "{\"encrypt\": \"${GOSSIP_KEY}\"}" > ${SERVER_CONFIG_STORE}/gossip.json
+	cp ${SERVER_CONFIG_STORE}/gossip.json ${CLIENTS_CONFIG_STORE}/gossip.json
+else
+	cp ${SERVER_CONFIG_STORE}/gossip.json ${CLIENTS_CONFIG_STORE}/gossip.json
+fi
 

@@ -34,7 +34,7 @@ services:
     networks:
       - default
 
-  client1:
+  client2:
     image: consul:1.0.7
     entrypoint: client_setup.sh
     command: agent

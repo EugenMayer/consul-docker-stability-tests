@@ -5,8 +5,13 @@
   "dns_config": {
     "allow_stale": false
   },
+  "ports": {
+    "https": 8501
+  },
   "node_name": "myconsulserver",
   "client_addr": "0.0.0.0",
   "server": true,
-  "bootstrap_expect": 1
+  "bootstrap_expect": 1,
+  "check_update_interval": "0s",
+  "disable_update_check": true
 }

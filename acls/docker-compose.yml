@@ -2,7 +2,7 @@ version: "2"
 
 services:
   server:
-    image: consul:1.0.7
+    image: consul:${CONSUL_VERSION}
     entrypoint: "server_setup.sh"
     command: "agent"
     environment:
@@ -13,6 +13,8 @@ services:
       - ./bin/server_acl_anon.sh:/usr/local/bin/server_acl_anon.sh
       - ./bin/server_acl_acl_token.sh:/usr/local/bin/server_acl_acl_token.sh
       - ./bin/server_acl_agent_token.sh:/usr/local/bin/server_acl_agent_token.sh
+      - ./bin/server_gossip.sh:/usr/local/bin/server_gossip.sh
+      - ./bin/server_tls.sh:/usr/local/bin/server_tls.sh
       # basic server configuration
       - ./consul-config/server_config.json:/consul/config/server_config.json
       - ./consul-config/server_acl.json:/consul/config/server_acl.json
@@ -21,12 +23,13 @@ services:
       - consul-general-client-configs:/consul/clients-general
     ports:
       - "8500:8500"
+      - "8501:8501" #https
     networks:
       default:
         ipv4_address: ${NETWORK_PREFIX}.254
 
   client1:
-    image: consul:1.0.7
+    image: consul:${CONSUL_VERSION}
     entrypoint: client_setup.sh
     command: agent
     depends_on:
@@ -39,7 +42,7 @@ services:
       - default
 
   client2:
-    image: consul:1.0.7
+    image: consul:${CONSUL_VERSION}
     entrypoint: client_setup.sh
     command: agent
     depends_on:

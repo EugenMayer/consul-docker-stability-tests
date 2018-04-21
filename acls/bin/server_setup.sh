@@ -1,7 +1,7 @@
 #!/bin/sh
 
 apk update
-apk add bash curl jq
+apk add bash curl jq openssl
 
 SERVER_CONFIG_STORE=/consul/config
 mkdir -p ${SERVER_CONFIG_STORE}
@@ -32,6 +32,14 @@ else
 
   echo "allowing usual node access using a token"
   server_acl_acl_token.sh
+
+  echo "enable gossip encryption"
+  server_gossip.sh
+
+  echo "setup tls"
+  server_tls.sh 127.0.0.1
+  echo "{\"key_file\":\"/consul/config/tls.key\", \"cert_file\": \"/consul/config/cert.crt\"}" > /consul/config/tls.json
+
   echo "--- shutting down local only server and starting usual server"
   kill ${pid}
 

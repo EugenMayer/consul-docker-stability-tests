@@ -5,5 +5,13 @@ and have each client registerd with the server and be able to read/write KVs, re
 
 ## Test
 
-1. Configure `acl_master_token` for the server, createa an acl_token for the `agent clients` and a ACL defintion for the client tokens / and a no-read for anons 
-2. ensure we can register services, write KVs and have health checks
+1. Configure `acl_master_token` for the server
+2. Setup ACLs an even lockdown anon access
+3. createa an acl_token for the `agent clients` with a ACL policy to let htem access what we usually need ( events, nodes, services, kv)
+4. configure `gossip` for encrypyion 
+5. setup `tls` for `https` based communication
+6. start `agents clients` with all the secrets as soon as the secrets are there
+
+## Versions tests
+
+adjust `.env` CONSUL_VERSION

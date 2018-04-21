@@ -14,3 +14,4 @@ With 0.8.5+ this behavior is no longer the default (but needs a opt in), node-id
 It seems like not persisting the `agent client` data directories does actually not harm in docker-envs since 
 it seems like the nodes are de-registered automatically when the node is removed / stopped thus no orphaned nodes
 exists when we shutdown client1 (and it deregisterds) and then starts again with a new node-id. 
+This is part of the docs https://www.consul.io/docs/agent/options.html#leave_on_terminate where clients are always auto-leaving on shutdown, so thats no wonder

@@ -2,9 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e8f9bd25-6f17-408f-bb41-d11fbbb7f607" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/node-ids/.env" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/node-ids/README.md" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/node-ids/consul-config/agent_config-client1.json" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/node-ids/consul-config/agent_config-client2.json" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/node-ids/consul-config/server_config.json" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/node-ids/docker-compose-nodata.yml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/node-ids/docker-compose.yml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/node-ids/test.sh" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/ip-change/.env" afterPath="$PROJECT_DIR$/ip-change/.env" />
-      <change beforePath="$PROJECT_DIR$/ip-change/docker-compose-0.7.yml" afterPath="$PROJECT_DIR$/ip-change/docker-compose-0.7.yml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,17 +22,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="docker-compose-0.7.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ip-change/docker-compose-0.7.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="16" lean-forward="false" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="agent_config.json" pinned="false" current-in-tab="true">
+      <file leaf-file-name="agent_config.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ip-change/consul-config/agent_config.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="150">
@@ -36,41 +32,84 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test-0.7.sh" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ip-change/test-0.7.sh">
+      <file leaf-file-name="docker-compose.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/node-ids/docker-compose.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="8" lean-forward="false" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
+            <state relative-caret-position="127">
+              <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="start-ip1.sh" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ip-change/start-ip1.sh">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/node-ids/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="225">
+                <caret line="15" column="95" lean-forward="false" selection-start-line="15" selection-start-column="95" selection-end-line="15" selection-end-column="95" />
+                <folding />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="docker-compose-nodata.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/node-ids/docker-compose-nodata.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+            <state relative-caret-position="246">
+              <caret line="23" column="44" lean-forward="false" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="clean.sh" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ip-change/clean.sh">
+      <file leaf-file-name="test.sh" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/node-ids/test.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="45">
-              <caret line="3" column="14" lean-forward="false" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
+              <caret line="3" column="37" lean-forward="false" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test-1.0.sh" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ip-change/test-1.0.sh">
+      <file leaf-file-name="server_config.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/node-ids/consul-config/server_config.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="8" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="agent_config-client1.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/node-ids/consul-config/agent_config-client1.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" column="28" lean-forward="false" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="agent_config-client2.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/node-ids/consul-config/agent_config-client2.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" column="28" lean-forward="false" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".env" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/node-ids/.env">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" column="33" lean-forward="false" selection-start-line="1" selection-start-column="33" selection-end-line="1" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -82,39 +121,6 @@
             <state relative-caret-position="30">
               <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="start-ip2.sh" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ip-change/start-ip2.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="48" lean-forward="false" selection-start-line="5" selection-start-column="48" selection-end-line="5" selection-end-column="48" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="recover-ip2.sh" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ip-change/recover-ip2.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ip-change/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="435">
-                <caret line="29" column="64" lean-forward="false" selection-start-line="29" selection-start-column="64" selection-end-line="29" selection-end-column="64" />
-                <folding />
-              </first_editor>
-              <second_editor />
             </state>
           </provider>
         </entry>
@@ -151,6 +157,13 @@
         <option value="$PROJECT_DIR$/ip-change/README.md" />
         <option value="$PROJECT_DIR$/ip-change/docker-compose-0.7.yml" />
         <option value="$PROJECT_DIR$/ip-change/.env" />
+        <option value="$PROJECT_DIR$/node-ids/.env" />
+        <option value="$PROJECT_DIR$/node-ids/consul-config/agent_config-client2.json" />
+        <option value="$PROJECT_DIR$/node-ids/consul-config/agent_config-client1.json" />
+        <option value="$PROJECT_DIR$/node-ids/docker-compose.yml" />
+        <option value="$PROJECT_DIR$/node-ids/docker-compose-nodata.yml" />
+        <option value="$PROJECT_DIR$/node-ids/test.sh" />
+        <option value="$PROJECT_DIR$/node-ids/README.md" />
       </list>
     </option>
   </component>
@@ -203,7 +216,12 @@
             <path>
               <item name="consul-docker-stability-tests" type="b2602c69:ProjectViewProjectNode" />
               <item name="consul-docker-stability-tests" type="462c0819:PsiDirectoryNode" />
-              <item name="ip-change" type="462c0819:PsiDirectoryNode" />
+              <item name="node-ids" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="consul-docker-stability-tests" type="b2602c69:ProjectViewProjectNode" />
+              <item name="consul-docker-stability-tests" type="462c0819:PsiDirectoryNode" />
+              <item name="node-ids" type="462c0819:PsiDirectoryNode" />
               <item name="consul-config" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -223,6 +241,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/node-ids" />
+      <recent name="$PROJECT_DIR$/node-ids/consul-config" />
       <recent name="$PROJECT_DIR$/ip-change" />
       <recent name="$PROJECT_DIR$/ip-change/consul-server-config" />
     </key>
@@ -329,12 +349,12 @@
       <option name="presentableId" value="Default" />
       <updated>1524213272182</updated>
       <workItem from="1524213277916" duration="5442000" />
-      <workItem from="1524223955826" duration="3904000" />
+      <workItem from="1524223955826" duration="8132000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9346000" />
+    <option name="totallyTimeSpent" value="13574000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1053" extended-state="0" />
@@ -543,8 +563,8 @@
     <entry file="file://$PROJECT_DIR$/ip-change/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="435">
-            <caret line="29" column="64" lean-forward="false" selection-start-line="29" selection-start-column="64" selection-end-line="29" selection-end-column="64" />
+          <first_editor relative-caret-position="465">
+            <caret line="31" column="64" lean-forward="false" selection-start-line="31" selection-start-column="64" selection-end-line="31" selection-end-column="64" />
             <folding />
           </first_editor>
           <second_editor />
@@ -572,6 +592,73 @@
         <state relative-caret-position="150">
           <caret line="10" column="1" lean-forward="false" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node-ids/consul-config/server_config.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node-ids/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="33" lean-forward="false" selection-start-line="1" selection-start-column="33" selection-end-line="1" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node-ids/consul-config/agent_config-client1.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="28" lean-forward="false" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node-ids/consul-config/agent_config-client2.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="28" lean-forward="false" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node-ids/docker-compose.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node-ids/docker-compose-nodata.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="23" column="44" lean-forward="false" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node-ids/test.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="37" lean-forward="false" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node-ids/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="225">
+            <caret line="15" column="95" lean-forward="false" selection-start-line="15" selection-start-column="95" selection-end-line="15" selection-end-column="95" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>

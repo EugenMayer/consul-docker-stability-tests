@@ -1,20 +1,36 @@
 #!/bin/sh
 
-apk update
-apk add bash curl jq openssl
+ENABLE_APK
 
-SERVER_CONFIG_STORE=/consul/config
+
+if [ -z "${ENABLE_APK}" ]; then
+	echo "disabled apk, hopefully you got all those things installed.."
+else
+	apk update
+	apk add bash curl jq openssl
+fi
+
 mkdir -p ${SERVER_CONFIG_STORE}
 
-
-if [ -f ${SERVER_CONFIG_STORE}/acl_master_token.json ]; then
+if [ -f ${SERVER_CONFIG_STORE}/.firstsetup ]; then
    echo "Server already bootstrapped"
    exec docker-entrypoint.sh "$@"
 else
-  echo "--- First bootstrap of the server..configuring ACL"
+  echo "--- First bootstrap of the server..configuring ACL/GOSSIP/TLS as configured"
 
-  echo "setup tls"
   server_tls.sh 127.0.0.1
+  server_gossip.sh
+
+  if [ -n "$ENABLE_ACL" ]; then
+  	# this needs to be done before the server starts, we cannot move that into server_acl.sh
+	cat >> ${SERVER_CONFIG_STORE}/server_acl.json <<EOL
+{
+  "acl_datacenter": "stable",
+  "acl_default_policy": "deny",
+  "acl_down_policy": "deny"
+}
+EOL
+  fi
 
   echo "---- Starting server in local 127.0.0.1 to not allow node registering during configuration"
   docker-entrypoint.sh "$@" -bind 127.0.0.1 &
@@ -22,26 +38,11 @@ else
 
   echo "waiting for the server to come up"
   wait-for-it -t 30 -h 127.0.0.1 -p 8500 -- echo "consul server is up"
-
-  echo "generating master token"
-  ACL_MASTER_TOKEN=`curl -sS -X PUT http://127.0.0.1:8500/v1/acl/bootstrap | jq -r -M '.ID'`
-  # save our token
-  echo "{\"acl_master_token\": \"${ACL_MASTER_TOKEN}\"}" > ${SERVER_CONFIG_STORE}/acl_master_token.json
-
-  server_acl_agent_token.sh
-
-  echo "forbid any anon access"
-  server_acl_anon.sh
-
-  echo "allowing usual node access using a token"
-  server_acl_acl_token.sh
-
-  echo "enable gossip encryption"
-  server_gossip.sh
-
+  server_acl.sh
 
   echo "--- shutting down local only server and starting usual server"
   kill ${pid}
 
+  touch ${SERVER_CONFIG_STORE}/.firstsetup
   exec docker-entrypoint.sh "$@"
 fi

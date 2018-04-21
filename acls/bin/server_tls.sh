@@ -2,6 +2,14 @@
 
 set -e
 
+if [ -z "$ENABLE_TLS" ]; then
+    echo "TLS should be disabled"
+    exit 0
+fi
+
+echo "Setting up tls"
+
+
 if [ -z "$1" ]; then
     echo "please pass the ip as the first parameter"
     exit 1
@@ -10,7 +18,7 @@ fi
 ip=$1
 # Specify where we will install
 # the xip.io certificate
-SSL_DIR="/consul/config"
+SSL_DIR=${SERVER_CONFIG_STORE}
 
 # A blank passphrase
 PASSPHRASE=""
@@ -19,8 +27,8 @@ PASSPHRASE=""
 SUBJ="
 C=DE
 ST=Niedersachsen
-O=KontextWork
-localityName=Hannover
+O=KW
+localityName=HN
 commonName=$ip
 organizationalUnitName=Consul
 emailAddress=info@company.tld
@@ -39,4 +47,18 @@ chown consul:consul $SSL_DIR/tls.key
 chmod 400 $SSL_DIR/tls.key
 chown consul:consul $SSL_DIR/cert.crt
 
-echo "{\"key_file\":\"/consul/config/tls.key\", \"cert_file\": \"/consul/config/cert.crt\"}" > /consul/config/tls.json
+cat > ${SERVER_CONFIG_STORE}/tls.json <<EOL
+{
+	"key_file": "${SERVER_CONFIG_STORE}/tls.key",
+	"cert_file": "${SERVER_CONFIG_STORE}/cert.crt",
+	"addresses": {
+		"http": "127.0.0.1",
+		"https": "0.0.0.0"
+	},
+	"ports": {
+		"http": 8500,
+		"https": 8501
+	}
+}
+EOL
+

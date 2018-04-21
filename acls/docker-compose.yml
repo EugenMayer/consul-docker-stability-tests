@@ -6,19 +6,24 @@ services:
     entrypoint: "server_setup.sh"
     command: "agent"
     environment:
-      CONSUL_BIND_INTERFACE: eth0
+      SERVER_CONFIG_STORE: /consul/config
+      CLIENTS_CONFIG_STORE: /consul/clients-general
+      ENABLE_APK: 1
+      ENABLE_GOSSIP: 1
+      ENABLE_ACL: 1
+      ENABLE_TLS: 1
     volumes:
       # those are our setup scripts
       - ./bin/server_setup.sh:/usr/local/bin/server_setup.sh
       - ./bin/server_acl_anon.sh:/usr/local/bin/server_acl_anon.sh
       - ./bin/server_acl_acl_token.sh:/usr/local/bin/server_acl_acl_token.sh
       - ./bin/server_acl_agent_token.sh:/usr/local/bin/server_acl_agent_token.sh
+      - ./bin/server_acl.sh:/usr/local/bin/server_acl.sh
       - ./bin/server_gossip.sh:/usr/local/bin/server_gossip.sh
       - ./bin/server_tls.sh:/usr/local/bin/server_tls.sh
       - ./bin/wait-for-it.sh:/usr/local/bin/wait-for-it
       # basic server configuration
       - ./consul-config/server_config.json:/consul/config/server_config.json
-      - ./consul-config/server_acl.json:/consul/config/server_acl.json
       - consul-server-data:/consul/data:rw
       - consul-server-config:/consul/config:rw
       - consul-general-client-configs:/consul/clients-general
@@ -33,6 +38,8 @@ services:
     image: consul:${CONSUL_VERSION}
     entrypoint: client_setup.sh
     command: agent
+    environment:
+      CLIENTS_CONFIG_STORE: /consul/clients-general
     depends_on:
       - server
     volumes:
@@ -46,6 +53,8 @@ services:
     image: consul:${CONSUL_VERSION}
     entrypoint: client_setup.sh
     command: agent
+    environment:
+      CLIENTS_CONFIG_STORE: /consul/clients-general
     depends_on:
       - server
     volumes:

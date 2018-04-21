@@ -15,6 +15,7 @@ services:
       - ./bin/server_acl_agent_token.sh:/usr/local/bin/server_acl_agent_token.sh
       - ./bin/server_gossip.sh:/usr/local/bin/server_gossip.sh
       - ./bin/server_tls.sh:/usr/local/bin/server_tls.sh
+      - ./bin/wait-for-it.sh:/usr/local/bin/wait-for-it
       # basic server configuration
       - ./consul-config/server_config.json:/consul/config/server_config.json
       - ./consul-config/server_acl.json:/consul/config/server_acl.json
@@ -22,7 +23,7 @@ services:
       - consul-server-config:/consul/config:rw
       - consul-general-client-configs:/consul/clients-general
     ports:
-      - "8500:8500"
+      - "8500:8500" #http, but will not be accessible ( should not be, we locked it down )
       - "8501:8501" #https
     networks:
       default:

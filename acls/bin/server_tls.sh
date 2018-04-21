@@ -38,3 +38,5 @@ openssl x509 -req -days 365 -in "$SSL_DIR/cert.csr" -signkey "$SSL_DIR/tls.key" 
 chown consul:consul $SSL_DIR/tls.key
 chmod 400 $SSL_DIR/tls.key
 chown consul:consul $SSL_DIR/cert.crt
+
+echo "{\"key_file\":\"/consul/config/tls.key\", \"cert_file\": \"/consul/config/cert.crt\"}" > /consul/config/tls.json

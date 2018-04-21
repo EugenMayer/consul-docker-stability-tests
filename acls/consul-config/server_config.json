@@ -5,7 +5,12 @@
   "dns_config": {
     "allow_stale": false
   },
+  "addresses": {
+    "http": "127.0.0.1",
+    "https": "0.0.0.0"
+  },
   "ports": {
+    "http": 8500,
     "https": 8501
   },
   "node_name": "myconsulserver",

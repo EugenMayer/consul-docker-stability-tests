@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# generates an acl_token with all usual ops a agent client need to fully utilize the consul server
+# stores it on a share volume so it can be consumed by out consul agent clients
+
 CONFIG_STORE=/consul/config
 CLIENTS_CONFIG_STORE=/consul/clients-general
 
@@ -13,7 +16,7 @@ ACL_TOKEN=`curl -sS -X PUT --header "X-Consul-Token: ${ACL_MASTER_TOKEN}" \
 '{
   "Name": "GENERAL_ACL_TOKEN",
   "Type": "client",
-  "Rules":  "key \"\" { policy = \"write\" } node \"\" { policy = \"write\" } service \"\" { policy = \"write\" } operator = \"read\""
+  "Rules": "agent \"\" { policy = \"write\" } event \"\" { policy = \"read\" } key \"\" { policy = \"write\" } node \"\" { policy = \"write\" } service \"\" { policy = \"write\" } operator = \"read\""
 }' http://127.0.0.1:8500/v1/acl/create | jq -r -M '.ID'`
 
 # echo "Agent client token: ${AGENT_CLIENT_TOKEN}"

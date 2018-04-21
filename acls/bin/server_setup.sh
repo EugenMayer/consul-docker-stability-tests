@@ -3,11 +3,11 @@
 apk update
 apk add bash curl jq
 
-CONFIG_STORE=/consul/config
-mkdir -p ${CONFIG_STORE}
+SERVER_CONFIG_STORE=/consul/config
+mkdir -p ${SERVER_CONFIG_STORE}
 
 
-if [ -f ${CONFIG_STORE}/acl_master_token.json ]; then
+if [ -f ${SERVER_CONFIG_STORE}/acl_master_token.json ]; then
    echo "Server already bootstrapped"
    exec docker-entrypoint.sh "$@"
 else
@@ -22,8 +22,10 @@ else
 
   echo "generating master token"
   ACL_MASTER_TOKEN=`curl -sS -X PUT http://127.0.0.1:8500/v1/acl/bootstrap | jq -r -M '.ID'`
-  #echo "ACL_MASTER_TOKEN IS: ${ACL_MASTER_TOKEN}"
-  echo "{\"acl_master_token\": \"${ACL_MASTER_TOKEN}\"}" > ${CONFIG_STORE}/acl_master_token.json
+  # save our token
+  echo "{\"acl_master_token\": \"${ACL_MASTER_TOKEN}\"}" > ${SERVER_CONFIG_STORE}/acl_master_token.json
+
+  server_acl_agent_token.sh
 
   echo "forbid any anon access"
   server_acl_anon.sh

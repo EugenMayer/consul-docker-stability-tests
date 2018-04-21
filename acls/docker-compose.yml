@@ -8,12 +8,16 @@ services:
     environment:
       CONSUL_BIND_INTERFACE: eth0
     volumes:
+      # those are our setup scripts
       - ./bin/server_setup.sh:/usr/local/bin/server_setup.sh
       - ./bin/server_acl_anon.sh:/usr/local/bin/server_acl_anon.sh
       - ./bin/server_acl_acl_token.sh:/usr/local/bin/server_acl_acl_token.sh
+      - ./bin/server_acl_agent_token.sh:/usr/local/bin/server_acl_agent_token.sh
+      # basic server configuration
       - ./consul-config/server_config.json:/consul/config/server_config.json
       - ./consul-config/server_acl.json:/consul/config/server_acl.json
       - consul-server-data:/consul/data:rw
+      - consul-server-config:/consul/config:rw
       - consul-general-client-configs:/consul/clients-general
     ports:
       - "8500:8500"
@@ -55,6 +59,8 @@ volumes:
   consul-client1-data:
     driver: local
   consul-client2-data:
+    driver: local
+  consul-server-config:
     driver: local
   consul-general-client-configs:
     driver: local

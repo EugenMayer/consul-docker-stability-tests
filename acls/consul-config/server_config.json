@@ -5,7 +5,6 @@
   "dns_config": {
     "allow_stale": false
   },
-  "log_level": "INFO",
   "node_name": "myconsulserver",
   "client_addr": "0.0.0.0",
   "server": true,

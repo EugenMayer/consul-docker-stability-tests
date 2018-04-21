@@ -3,7 +3,6 @@
   "datacenter": "stable",
   "node_name": "test-client1",
   "data_dir": "/consul/data",
-  "log_level": "INFO",
   "server": false,
   "start_join": [
     "server"

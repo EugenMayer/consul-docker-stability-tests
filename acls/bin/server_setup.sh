@@ -38,6 +38,8 @@ EOL
 
   echo "waiting for the server to come up"
   wait-for-it -t 30 -h 127.0.0.1 -p 8500 -- echo "consul server is up"
+  sleep 5s
+
   server_acl.sh
 
   echo "--- shutting down local only server and starting usual server"

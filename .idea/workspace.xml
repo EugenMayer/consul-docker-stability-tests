@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e8f9bd25-6f17-408f-bb41-d11fbbb7f607" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/acls/bin/server_setup.sh" afterPath="$PROJECT_DIR$/acls/bin/server_setup.sh" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -77,8 +78,18 @@
       <file leaf-file-name="server_setup.sh" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/acls/bin/server_setup.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-70">
-              <caret line="25" column="9" lean-forward="false" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
+            <state relative-caret-position="155">
+              <caret line="40" column="2" lean-forward="false" selection-start-line="40" selection-start-column="2" selection-end-line="40" selection-end-column="2" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="server_tls.sh" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/acls/bin/server_tls.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="446">
+              <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -99,16 +110,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
               <caret line="7" column="24" lean-forward="false" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test.sh" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/acls/test.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="12" column="66" lean-forward="false" selection-start-line="12" selection-start-column="66" selection-end-line="12" selection-end-column="66" />
               <folding />
             </state>
           </provider>
@@ -182,15 +183,15 @@
         <option value="$PROJECT_DIR$/acls/consul-config/server_acl.json" />
         <option value="$PROJECT_DIR$/acls/bin/client_setup.sh" />
         <option value="$PROJECT_DIR$/acls/consul-config/server_config.json" />
-        <option value="$PROJECT_DIR$/acls/bin/server_tls.sh" />
         <option value="$PROJECT_DIR$/acls/bin/server_acl_acl_token.sh" />
         <option value="$PROJECT_DIR$/acls/bin/server_acl_agent_token.sh" />
         <option value="$PROJECT_DIR$/acls/bin/server_acl_anon.sh" />
         <option value="$PROJECT_DIR$/acls/test.sh" />
         <option value="$PROJECT_DIR$/acls/bin/server_gossip.sh" />
         <option value="$PROJECT_DIR$/acls/bin/server_acl.sh" />
-        <option value="$PROJECT_DIR$/acls/bin/server_setup.sh" />
         <option value="$PROJECT_DIR$/acls/docker-compose.yml" />
+        <option value="$PROJECT_DIR$/acls/bin/server_tls.sh" />
+        <option value="$PROJECT_DIR$/acls/bin/server_setup.sh" />
       </list>
     </option>
   </component>
@@ -385,12 +386,12 @@
       <updated>1524213272182</updated>
       <workItem from="1524213277916" duration="5442000" />
       <workItem from="1524223955826" duration="12332000" />
-      <workItem from="1524317548455" duration="27985000" />
+      <workItem from="1524317548455" duration="28619000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45759000" />
+    <option name="totallyTimeSpent" value="46393000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="5" y="24" width="1920" height="977" extended-state="0" />
@@ -731,14 +732,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/acls/bin/server_tls.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="49" column="5" lean-forward="false" selection-start-line="49" selection-start-column="5" selection-end-line="49" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/acls/bin/wait-for-it.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="121">
@@ -819,10 +812,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/acls/bin/server_tls.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="446">
+          <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/acls/bin/server_setup.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-70">
-          <caret line="25" column="9" lean-forward="false" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
+        <state relative-caret-position="155">
+          <caret line="40" column="2" lean-forward="false" selection-start-line="40" selection-start-column="2" selection-end-line="40" selection-end-column="2" />
           <folding />
         </state>
       </provider>

@@ -39,8 +39,9 @@ emailAddress=info@company.tld
 mkdir -p "$SSL_DIR"
 
 # Generate our Private Key, CSR and Certificate
-openssl genrsa -out "$SSL_DIR/tls.key" 2048
-openssl req -new -subj "$(echo -n "$SUBJ" | tr "\n" "/")" -key "$SSL_DIR/tls.key" -out "$SSL_DIR/cert.csr" -passin pass:$PASSPHRASE
+openssl req -nodes -x509 -newkey rsa:2048 -keyout ${SSL_DIR}/ca.key -out ${SSL_DIR}/ca.crt -subj "$(echo -n "$SUBJ" | tr "\n" "/")"
+openssl req -nodes -newkey rsa:2048 -keyout ${SSL_DIR}/tls.key -out ${SSL_DIR}/cert.csr -subj "$(echo -n "$SUBJ" | tr "\n" "/")"
+openssl x509 -req -in ${SSL_DIR}/cert.csr -CA ${SSL_DIR}/ca.crt -CAkey ${SSL_DIR}/ca.key -CAcreateserial -out ${SSL_DIR}/cert.crt
 openssl x509 -req -days 365 -in "$SSL_DIR/cert.csr" -signkey "$SSL_DIR/tls.key" -out "$SSL_DIR/cert.crt"
 
 chown consul:consul $SSL_DIR/tls.key
@@ -51,6 +52,7 @@ cat > ${SERVER_CONFIG_STORE}/tls.json <<EOL
 {
 	"key_file": "${SERVER_CONFIG_STORE}/tls.key",
 	"cert_file": "${SERVER_CONFIG_STORE}/cert.crt",
+	"ca_file": "${SERVER_CONFIG_STORE}/ca.crt",
 	"addresses": {
 		"http": "127.0.0.1",
 		"https": "0.0.0.0"

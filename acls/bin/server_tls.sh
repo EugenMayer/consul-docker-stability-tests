@@ -20,9 +20,6 @@ ip=$1
 # the xip.io certificate
 SSL_DIR=${SERVER_CONFIG_STORE}
 
-# A blank passphrase
-PASSPHRASE=""
-
 # Set our CSR variables
 SUBJ="
 C=DE

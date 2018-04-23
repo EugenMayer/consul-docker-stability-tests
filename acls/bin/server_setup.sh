@@ -21,7 +21,7 @@ else
   server_tls.sh 127.0.0.1
   server_gossip.sh
 
-  if [ -n "$ENABLE_ACL" ]; then
+  if [ -z "$ENABLE_ACL" ] || [ "$ENABLE_ACL" -eq "0" ] ; then
   	# this needs to be done before the server starts, we cannot move that into server_acl.sh
 	cat > ${SERVER_CONFIG_STORE}/server_acl.json <<EOL
 {

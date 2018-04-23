@@ -1,7 +1,7 @@
 #!/bin/sh
 
 set -e
-if [ -z "$ENABLE_ACL" ]; then
+if [ -z "$ENABLE_ACL" ] || [ "$ENABLE_ACL" -eq "0" ] ; then
     echo "ACLs should be disabled"
     exit 0
 fi

@@ -17,8 +17,15 @@ if [ ! -f ${SERVER_CONFIG_STORE}/server_acl_master_token.json ]; then
   "acl_master_token": "${ACL_MASTER_TOKEN}"
 }
 EOL
-fi
 
+# we also put the master token as acl_token for our consul server so we can operated without token on the local cli
+
+    cat > ${SERVER_CONFIG_STORE}/server_acl_token.json <<EOL
+{
+  "acl_token": "${ACL_MASTER_TOKEN}"
+}
+EOL
+fi
 
 echo "our server should have an agent token"
 server_acl_agent_token.sh

@@ -5,6 +5,20 @@ and have each client registerd with the server and be able to read/write KVs, re
 
 This stack is designed to be **production ready**. So locked down, encrypted and secured as much as sanity allows here
 
+## Using as your boilerplate
+
+This setup actually suits also as a boilerplate for a production setup. You can configure the most important aspects
+
+using those env variables you can configure if ACL/Gossip/TLS should be enabled and configured or not. Everything happens
+auto-magical - see the scripts in bin/ for the components. They are fairly simple
+
+      ENABLE_APK: 1
+      ENABLE_GOSSIP: 1
+      ENABLE_ACL: 1
+      ENABLE_TLS: 1
+
+`ENABLE_APK` is just for enabling the installation of `curl jq` which we need for the scripts ( or you maybe did that in your image already
+)
 ## Test
 
 1. Configure `acl_master_token` for the server
@@ -26,3 +40,11 @@ adjust `.env` CONSUL_VERSION
 
 1. we ar eusing wait-for-it to remove arbitrary sleeps, see https://github.com/vishnubob/wait-for-it
 2. You should be able to cherry-pick what you need. Be it gossip or not, tls or not
+
+## Running the test yourself
+
+```
+docker-compose up -d
+# wait for about 10 second
+./test.sh
+```

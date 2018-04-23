@@ -16,4 +16,4 @@ ACL_AGENT_TOKEN=`curl -sS -X PUT --header "X-Consul-Token: ${ACL_MASTER_TOKEN}" 
   "Rules": "agent \"\" { policy = \"write\" } event \"\" { policy = \"read\" } key \"\" { policy = \"write\" } node \"\" { policy = \"write\" } service \"\" { policy = \"write\" } operator = \"read\""
 }' http://127.0.0.1:8500/v1/acl/create | jq -r -M '.ID'`
 
-echo "{\"acl_agent_token\": \"${ACL_AGENT_TOKEN}\"}" > ${SERVER_CONFIG_STORE}/acl_agent_token.json
+echo "{\"acl_agent_token\": \"${ACL_AGENT_TOKEN}\"}" > ${SERVER_CONFIG_STORE}/server_acl_agent_acl_token.json

@@ -16,6 +16,8 @@ ACL_TOKEN=`curl -sS -X PUT --header "X-Consul-Token: ${ACL_MASTER_TOKEN}" \
   "Rules": "agent \"\" { policy = \"write\" } event \"\" { policy = \"read\" } key \"\" { policy = \"write\" } node \"\" { policy = \"write\" } service \"\" { policy = \"write\" } operator = \"read\""
 }' http://127.0.0.1:8500/v1/acl/create | jq -r -M '.ID'`
 
+# let the consul server properly adjust that this ACL exist - when we write the token below all our clients start to boot
+#sleep 1
 # echo "Agent client token: ${AGENT_CLIENT_TOKEN}"
 echo "{\"acl_token\": \"${ACL_TOKEN}\"}" > ${CLIENTS_CONFIG_STORE}/general_acl_token.json
 

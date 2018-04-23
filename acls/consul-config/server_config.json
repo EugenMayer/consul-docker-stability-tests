@@ -10,10 +10,5 @@
   "server": true,
   "bootstrap_expect": 1,
   "check_update_interval": "0s",
-  "disable_update_check": true,
-  "verify_incoming": false,
-  "verify_incoming_rpc": false,
-  "verify_incoming_https": false,
-  "verify_outgoing": false,
-  "verify_server_hostname": false
+  "disable_update_check": true
 }

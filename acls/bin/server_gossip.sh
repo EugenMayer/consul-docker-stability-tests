@@ -3,8 +3,8 @@
 # locks down our consul server from leaking any data to anybody - full anon block
 
 
-if [ -z "${ENABLE_GOSSIP}" ]; then
-    echo "GOSSIP should be disabled"
+if [ -z "${ENABLE_GOSSIP}" ] || [ "ENABLE_GOSSIP" -eq "0" ]; then
+    echo "GOSSIP is disabled, skipping configuration"
     exit 0
 fi
 

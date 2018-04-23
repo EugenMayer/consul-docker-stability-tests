@@ -2,8 +2,8 @@
 
 set -e
 
-if [ -z "$ENABLE_TLS" ]; then
-    echo "TLS should be disabled"
+if [ -z "$ENABLE_TLS" ] || [ "$ENABLE_TLS" -eq "0" ]; then
+    echo "TLS is disabled, skipping configuration"
     exit 0
 fi
 

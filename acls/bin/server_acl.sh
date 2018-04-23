@@ -2,7 +2,7 @@
 
 set -e
 if [ -z "$ENABLE_ACL" ] || [ "$ENABLE_ACL" -eq "0" ] ; then
-    echo "ACLs should be disabled"
+    echo "ACLs is disabled, skipping configuration"
     exit 0
 fi
 

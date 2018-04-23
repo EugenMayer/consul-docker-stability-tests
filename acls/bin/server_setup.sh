@@ -18,7 +18,7 @@ if [ -f ${SERVER_CONFIG_STORE}/.firstsetup ]; then
 else
   echo "--- First bootstrap of the server..configuring ACL/GOSSIP/TLS as configured"
 
-  server_tls.sh 127.0.0.1
+  server_tls.sh `hostname -f`
   server_gossip.sh
   if [ -n "$ENABLE_ACL" ] && [ ! "$ENABLE_ACL" -eq "0" ] ; then
   	# this needs to be done before the server starts, we cannot move that into server_acl.sh

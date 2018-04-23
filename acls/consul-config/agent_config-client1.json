@@ -5,10 +5,9 @@
   "data_dir": "/consul/data",
   "server": false,
   "addresses": {
-    "http": "127.0.0.1",
-    "https": "0.0.0.0"
+    "http": "127.0.0.1"
   },
-  "start_join": [
+  "retry_join": [
     "server"
   ]
 }

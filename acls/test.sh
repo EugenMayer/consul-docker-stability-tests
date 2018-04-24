@@ -47,6 +47,16 @@ else
   exit 1
 fi
 
+# TODO: that test does not work due to ember - its never redirected if the client does not have js support
+#echo "----------- server: cannot access ACLs using the GUI"
+## this works due to our
+#if docker-compose  exec server /usr/bin/curl -LsSk https://localhost:8501/ui/#/stable/acls ; then
+#  echo "[ERROR] GUI seems to be open and anons can access anything"
+#  exit 1
+#else
+#  echo -n  "[ok]"
+#fi
+
 echo "----------- agent client access using curl (and the acl_token)"
 if docker-compose  exec client1 consul members; then
     echo -n "[ok]"
@@ -63,3 +73,4 @@ else
   echo "[ERROR] client1 cannot read kv value using the acl_token"
   exit 1
 fi
+

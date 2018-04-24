@@ -20,8 +20,8 @@ if [ ! -f ${SERVER_CONFIG_STORE}/server_acl_master_token.json ]; then
 EOL
 
 # we also put the master token as acl_token for our consul server so we can operated without token on the local cli
-
-cat > ${SERVER_CONFIG_STORE}/server_acl_token.json <<EOL
+# TODO: this is not allowed, see https://github.com/hashicorp/consul/issues/4056 and will open the UI wide open
+  cat > ${SERVER_CONFIG_STORE}/server_acl_token.json <<EOL
 {
   "acl_token": "${ACL_MASTER_TOKEN}"
 }

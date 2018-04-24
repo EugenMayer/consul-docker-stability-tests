@@ -21,7 +21,7 @@ EOL
 
 # we also put the master token as acl_token for our consul server so we can operated without token on the local cli
 
-    cat > ${SERVER_CONFIG_STORE}/server_acl_token.json <<EOL
+cat > ${SERVER_CONFIG_STORE}/server_acl_token.json <<EOL
 {
   "acl_token": "${ACL_MASTER_TOKEN}"
 }

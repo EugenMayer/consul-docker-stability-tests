@@ -3,7 +3,7 @@
 # generates an acl_token with all usual ops a agent client need to fully utilize the consul server
 # stores it on a share volume so it can be consumed by out consul agent clients
 
-mkdir -p ${CLIENTS_CONFIG_STORE}
+mkdir -p ${CLIENTS_SHARED_CONFIG_STORE}
 
 ACL_MASTER_TOKEN=`cat ${SERVER_CONFIG_STORE}/server_acl_master_token.json | jq -r -M '.acl_master_token'`
 
@@ -19,5 +19,5 @@ ACL_TOKEN=`curl -sS -X PUT --header "X-Consul-Token: ${ACL_MASTER_TOKEN}" \
 # let the consul server properly adjust that this ACL exist - when we write the token below all our clients start to boot
 #sleep 1
 # echo "Agent client token: ${AGENT_CLIENT_TOKEN}"
-echo "{\"acl_token\": \"${ACL_TOKEN}\"}" > ${CLIENTS_CONFIG_STORE}/general_acl_token.json
+echo "{\"acl_token\": \"${ACL_TOKEN}\"}" > ${CLIENTS_SHARED_CONFIG_STORE}/general_acl_token.json
 

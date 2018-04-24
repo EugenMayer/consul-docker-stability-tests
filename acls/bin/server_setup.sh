@@ -1,7 +1,7 @@
 #!/bin/sh
 
 mkdir -p ${SERVER_CONFIG_STORE}
-mkdir -p ${CLIENTS_CONFIG_STORE}
+mkdir -p ${CLIENTS_SHARED_CONFIG_STORE}
 
 if [ -z "${ENABLE_APK}" ]; then
 	echo "disabled apk, hopefully you got all those things installed.."
@@ -44,6 +44,10 @@ EOL
   echo "--- shutting down local only server and starting usual server"
   kill ${pid}
 
+  # that does secure we do not rerun this initial bootstrap configuration
   touch ${SERVER_CONFIG_STORE}/.firstsetup
+
+  # tell our clients they can startup, finding the configuration they need on the shared volume
+  touch ${CLIENTS_SHARED_CONFIG_STORE}/.bootstrapped
   exec docker-entrypoint.sh "$@"
 fi

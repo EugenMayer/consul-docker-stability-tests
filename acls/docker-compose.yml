@@ -5,9 +5,10 @@ services:
     image: consul:${CONSUL_VERSION}
     entrypoint: "server_setup.sh"
     command: "agent"
+    hostname : consulserver1
     environment:
       SERVER_CONFIG_STORE: /consul/config
-      CLIENTS_CONFIG_STORE: /consul/clients-general
+      CLIENTS_SHARED_CONFIG_STORE: /consul/clients-general
       ENABLE_APK: 1
       ENABLE_GOSSIP: 1
       ENABLE_ACL: 1
@@ -39,7 +40,7 @@ services:
     entrypoint: client_setup.sh
     command: agent
     environment:
-      CLIENTS_CONFIG_STORE: /consul/clients-general
+      CLIENTS_SHARED_CONFIG_STORE: /consul/clients-general
     depends_on:
       - server
     volumes:
@@ -54,7 +55,7 @@ services:
     entrypoint: client_setup.sh
     command: agent
     environment:
-      CLIENTS_CONFIG_STORE: /consul/clients-general
+      CLIENTS_SHARED_CONFIG_STORE: /consul/clients-general
     depends_on:
       - server
     volumes:

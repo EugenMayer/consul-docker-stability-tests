@@ -3,6 +3,7 @@
   <component name="BashSupportProjectSettings">
     <option name="globalVariables">
       <set>
+        <option value="CLIENTS_SHARED_CONFIG_STORE" />
         <option value="ENABLE_GOSSIP" />
       </set>
     </option>

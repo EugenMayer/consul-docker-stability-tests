@@ -37,7 +37,6 @@ services:
     networks:
       - default
 volumes:
-
   consul-server-data:
     driver: local
   consul-client1-data:

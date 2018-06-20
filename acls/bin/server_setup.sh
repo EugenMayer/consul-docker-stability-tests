@@ -3,6 +3,10 @@
 mkdir -p ${SERVER_CONFIG_STORE}
 mkdir -p ${CLIENTS_SHARED_CONFIG_STORE}
 
+if [ -f ${SERVER_CONFIG_STORE}/.firstsetup ]; then
+	touch ${CLIENTS_SHARED_CONFIG_STORE}/.bootstrapped
+fi
+
 if [ -z "${ENABLE_APK}" ]; then
 	echo "disabled apk, hopefully you got all those things installed.."
 else
@@ -14,13 +18,16 @@ mkdir -p ${SERVER_CONFIG_STORE}
 
 if [ -f ${SERVER_CONFIG_STORE}/.firstsetup ]; then
    echo "Server already bootstrapped"
+    # tell our clients they can startup, finding the configuration they need on the shared volume
+   touch ${CLIENTS_SHARED_CONFIG_STORE}/.bootstrapped
+  
    exec docker-entrypoint.sh "$@"
 else
   echo "--- First bootstrap of the server..configuring ACL/GOSSIP/TLS as configured"
 
   server_tls.sh `hostname -f`
   server_gossip.sh
-  if [ -n "$ENABLE_ACL" ] && [ ! "$ENABLE_ACL" -eq "0" ] ; then
+  if [ -n "${ENABLE_ACL}" ] && [ ! "${ENABLE_ACL}" -eq "0" ] ; then
   	# this needs to be done before the server starts, we cannot move that into server_acl.sh
 	cat > ${SERVER_CONFIG_STORE}/server_acl.json <<EOL
 {
@@ -41,7 +48,7 @@ EOL
 
   server_acl.sh
 
-  echo "--- shutting down local only server and starting usual server"
+  echo "--- shutting down 'local only' server and starting usual server"
   kill ${pid}
 
   # that does secure we do not rerun this initial bootstrap configuration

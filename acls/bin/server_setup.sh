@@ -18,9 +18,6 @@ mkdir -p ${SERVER_CONFIG_STORE}
 
 if [ -f ${SERVER_CONFIG_STORE}/.firstsetup ]; then
    echo "Server already bootstrapped"
-    # tell our clients they can startup, finding the configuration they need on the shared volume
-   touch ${CLIENTS_SHARED_CONFIG_STORE}/.bootstrapped
-  
    exec docker-entrypoint.sh "$@"
 else
   echo "--- First bootstrap of the server..configuring ACL/GOSSIP/TLS as configured"

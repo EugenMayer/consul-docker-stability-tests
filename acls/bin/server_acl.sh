@@ -4,6 +4,9 @@ set -e
 if [ -z "$ENABLE_ACL" ] || [ "$ENABLE_ACL" -eq "0" ] ; then
     echo "ACLs is disabled, skipping configuration"
     echo "creating dummy general_acl_token.json file so the clients can start"
+
+    mkdir -p ${CLIENTS_SHARED_CONFIG_STORE}
+    echo "{}" > ${CLIENTS_SHARED_CONFIG_STORE}/general_acl_token.json
     exit 0
 fi
 
@@ -20,12 +23,12 @@ if [ ! -f ${SERVER_CONFIG_STORE}/server_acl_master_token.json ]; then
 EOL
 
 # we also put the master token as acl_token for our consul server so we can operated without token on the local cli
-# TODO: this is not allowed, see https://github.com/hashicorp/consul/issues/4056 and will open the UI wide open
-  cat > ${SERVER_CONFIG_STORE}/server_acl_token.json <<EOL
-{
-  "acl_token": "${ACL_MASTER_TOKEN}"
-}
-EOL
+# TODO: this is not allowed due to https://github.com/hashicorp/consul/issues/4056
+#    cat > ${SERVER_CONFIG_STORE}/server_acl_token.json <<EOL
+#{
+#  "acl_token": "${ACL_MASTER_TOKEN}"
+#}
+#EOL
 fi
 
 echo "our server should have an agent token"

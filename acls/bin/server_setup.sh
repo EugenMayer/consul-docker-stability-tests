@@ -5,10 +5,16 @@ mkdir -p ${CLIENTS_SHARED_CONFIG_STORE}
 
 if [ -f ${SERVER_CONFIG_STORE}/.firstsetup ]; then
 	touch ${CLIENTS_SHARED_CONFIG_STORE}/.bootstrapped
+
+	# this is a moveable pointer, so in 2023 we will use .updatecerts2018 to regenerate all certificates since tey are valid for 5 years only
+	if [ ! -f ${SERVER_CONFIG_STORE}/.updatecerts2018 ]; then
+        server_tls.sh `hostname -f`
+	    touch ${SERVER_CONFIG_STORE}/.updatecerts2018
+    fi
 fi
 
 if [ -z "${ENABLE_APK}" ]; then
-	echo "disabled apk, hopefully you got all those things installed.."
+	echo "disabled apk, hopefully you got all those things installed: bash curl jq openssl"
 else
 	apk update
 	apk add bash curl jq openssl
@@ -18,6 +24,8 @@ mkdir -p ${SERVER_CONFIG_STORE}
 
 if [ -f ${SERVER_CONFIG_STORE}/.firstsetup ]; then
    echo "Server already bootstrapped"
+   echo "ensuring acl is configured" && server_acl.sh
+
    exec docker-entrypoint.sh "$@"
 else
   echo "--- First bootstrap of the server..configuring ACL/GOSSIP/TLS as configured"

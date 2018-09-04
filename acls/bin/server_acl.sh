@@ -32,11 +32,6 @@ EOL
 #EOL
 fi
 
-echo "our server should have an agent token"
 server_acl_agent_token.sh
-
-echo "forbid any anon access"
 server_acl_anon.sh
-
-echo "allowing usual node access using a token"
 server_acl_acl_token.sh

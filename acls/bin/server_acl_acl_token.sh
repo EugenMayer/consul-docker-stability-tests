@@ -8,6 +8,7 @@ set -e
 mkdir -p ${CLIENTS_SHARED_CONFIG_STORE}
 
 if [ ! -f ${CLIENTS_SHARED_CONFIG_STORE}/general_acl_token.json ]; then
+    echo "generating consul client general ACL token for usual access"
     ACL_MASTER_TOKEN=`cat ${SERVER_CONFIG_STORE}/server_acl_master_token.json | jq -r -M '.acl_master_token'`
 
     # this generates a token for all our agent clients to register with the server, write kvs and register services
@@ -23,6 +24,8 @@ if [ ! -f ${CLIENTS_SHARED_CONFIG_STORE}/general_acl_token.json ]; then
     #sleep 1
     # echo "Agent client token: ${AGENT_CLIENT_TOKEN}"
     echo "{\"acl_token\": \"${ACL_TOKEN}\"}" > ${CLIENTS_SHARED_CONFIG_STORE}/general_acl_token.json
+else
+    echo "skipping acl_token setup .. already configured";
 fi
 
 

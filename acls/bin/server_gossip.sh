@@ -1,9 +1,10 @@
 #!/bin/sh
 
+set -e
+
 # locks down our consul server from leaking any data to anybody - full anon block
 
-
-if [ -z "${ENABLE_GOSSIP}" ] || [ "ENABLE_GOSSIP" -eq "0" ]; then
+if [ -z "${ENABLE_GOSSIP}" ] || [ "${ENABLE_GOSSIP}" -eq "0" ]; then
     echo "GOSSIP is disabled, skipping configuration"
     exit 0
 fi
@@ -17,4 +18,3 @@ if [ ! -f ${SERVER_CONFIG_STORE}/gossip.json ]; then
 else
 	cp ${SERVER_CONFIG_STORE}/gossip.json ${CLIENTS_SHARED_CONFIG_STORE}/gossip.json
 fi
-

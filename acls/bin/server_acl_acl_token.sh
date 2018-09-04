@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 # generates an acl_token with all usual ops a agent client need to fully utilize the consul server
 # stores it on a share volume so it can be consumed by out consul agent clients
 

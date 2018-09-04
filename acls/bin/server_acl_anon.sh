@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 # locks down our consul server from leaking any data to anybody - full anon block
 if [ ! -f ${SERVER_CONFIG_STORE}/.aclanonsetup ]; then
     ACL_MASTER_TOKEN=`cat ${SERVER_CONFIG_STORE}/server_acl_master_token.json | jq -r -M '.acl_master_token'`

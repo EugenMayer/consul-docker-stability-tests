@@ -2,7 +2,7 @@ version: "2"
 
 services:
   server:
-    image: consul:1.2.1
+    image: consul:1.2.2
     command: agent
     environment:
       CONSUL_BIND_INTERFACE: eth0

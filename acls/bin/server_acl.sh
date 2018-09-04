@@ -1,6 +1,7 @@
 #!/bin/sh
 
 set -e
+
 if [ -z "$ENABLE_ACL" ] || [ "$ENABLE_ACL" -eq "0" ] ; then
     echo "ACLs is disabled, skipping configuration"
     echo "creating dummy general_acl_token.json file so the clients can start"

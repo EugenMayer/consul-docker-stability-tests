@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 mkdir -p ${SERVER_CONFIG_STORE}
 mkdir -p ${CLIENTS_SHARED_CONFIG_STORE}
 

@@ -25,10 +25,27 @@ fi
 mkdir -p ${SERVER_CONFIG_STORE}
 
 if [ -f ${SERVER_CONFIG_STORE}/.firstsetup ]; then
-   echo "Server already bootstrapped"
-   echo "ensuring acl is configured" && server_acl.sh
+  echo "Server already bootstrapped"
 
-   exec docker-entrypoint.sh "$@"
+  # try to converge
+  current_acl_agent_token=$(cat ${SERVER_CONFIG_STORE}/server_acl_agent_acl_token.json | jq -r -M '.acl_agent_token')
+  if [ -z "$ENABLE_ACL" ] || [ "$ENABLE_ACL" -eq "0" ]; then
+    # deconfigure ACL, no longer present
+    rm ${SERVER_CONFIG_STORE}/.aclanonsetup ${CLIENTS_SHARED_CONFIG_STORE}/general_acl_token.json ${SERVER_CONFIG_STORE}/server_acl_master_token.json ${SERVER_CONFIG_STORE}/server_acl_agent_acl_token.json
+  elif [ ! -f ${SERVER_CONFIG_STORE}/.aclanonsetup ] || [ ! -f ${CLIENTS_SHARED_CONFIG_STORE}/general_acl_token.json ] ||  [ ! -f ${SERVER_CONFIG_STORE}/server_acl_master_token.json ] || [ ! -f ${SERVER_CONFIG_STORE}/server_acl_agent_acl_token.json ] || [ -z "${current_acl_agent_token}" ]; then
+    echo "ACL is missconifgured / outdated, trying to fix it"
+    # safe start the sever, configure ACL if needed and then start normally
+    docker-entrypoint.sh "$@" &
+    pid="$!"
+    echo "waiting for the server to come up..."
+    wait-for-it -t 30 -h 127.0.0.1 -p 8500 -- echo "..consul found"
+    sleep 5s
+    server_acl.sh
+    kill $pid
+  fi
+
+   # normal startup
+  exec docker-entrypoint.sh "$@"
 else
   echo "--- First bootstrap of the server..configuring ACL/GOSSIP/TLS as configured"
 
@@ -48,13 +65,10 @@ EOL
   echo "---- Starting server in local 127.0.0.1 to not allow node registering during configuration"
   docker-entrypoint.sh "$@" -bind 127.0.0.1 &
   pid="$!"
-
   echo "waiting for the server to come up"
-  wait-for-it -t 30 -h 127.0.0.1 -p 8500 -- echo "consul server is up"
+  wait-for-it -t 30 -h 127.0.0.1 -p 8500 -- echo "consul server started"
   sleep 5s
-
   server_acl.sh
-
   echo "--- shutting down 'local only' server and starting usual server"
   kill ${pid}
 

@@ -7,7 +7,7 @@ set -e
 # [WARN] agent: Node info update blocked by ACLs
 # [WARN] agent: Coordinate update blocked by ACLs
 
-if [ ! -f ${SERVER_CONFIG_STORE}/server_acl_agent_acl_token.json ] || cat ${SERVER_CONFIG_STORE}/server_acl_agent_acl_token.json | jq -e -r -M '.acl_agent_token'; then
+if [ ! -f ${SERVER_CONFIG_STORE}/server_acl_agent_acl_token.json ] || ! cat ${SERVER_CONFIG_STORE}/server_acl_agent_acl_token.json | jq -e -r -M '.acl_agent_token'; then
     echo "generate server agent token to let the server access by ACLs"
     ACL_MASTER_TOKEN=`cat ${SERVER_CONFIG_STORE}/server_acl_master_token.json | jq -r -M '.acl_master_token'`
 

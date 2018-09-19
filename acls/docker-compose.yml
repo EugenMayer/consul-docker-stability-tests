@@ -17,8 +17,8 @@ services:
       # those are our setup scripts
       - ./bin/server_setup.sh:/usr/local/bin/server_setup.sh
       - ./bin/server_acl_anon.sh:/usr/local/bin/server_acl_anon.sh
-      - ./bin/server_acl_acl_token.sh:/usr/local/bin/server_acl_acl_token.sh
-      - ./bin/server_acl_agent_token.sh:/usr/local/bin/server_acl_agent_token.sh
+      - ./bin/server_acl_client_general_token.sh:/usr/local/bin/server_acl_client_general_token.sh
+      - ./bin/server_acl_server_agent_token.sh:/usr/local/bin/server_acl_server_agent_token.sh
       - ./bin/server_acl.sh:/usr/local/bin/server_acl.sh
       - ./bin/server_gossip.sh:/usr/local/bin/server_gossip.sh
       - ./bin/server_tls.sh:/usr/local/bin/server_tls.sh

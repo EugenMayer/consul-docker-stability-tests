@@ -3,8 +3,9 @@
   <component name="BashSupportProjectSettings">
     <option name="globalVariables">
       <set>
-        <option value="CLIENTS_SHARED_CONFIG_STORE" />
+        <option value="ENABLE_ACL" />
         <option value="ENABLE_GOSSIP" />
+        <option value="SERVER_CONFIG_STORE" />
       </set>
     </option>
   </component>

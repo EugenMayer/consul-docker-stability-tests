@@ -11,10 +11,10 @@ if [ -z "$ENABLE_ACL" ] || [ "$ENABLE_ACL" -eq "0" ] ; then
     exit 0
 fi
 
-# locks down our consul server from leaking any data to anybody - full anon block
-
+# get our one-time boostrap token we can use to generate all other tokens. It can only be done once
+# thus save the token
 if [ ! -f ${SERVER_CONFIG_STORE}/server_acl_master_token.json ]; then
-	echo "generating master token"
+	echo "getting acl boostrap token / generating master token"
 	ACL_MASTER_TOKEN=`curl -sS -X PUT http://127.0.0.1:8500/v1/acl/bootstrap | jq -r -M '.ID'`
 	# save our token
 	cat > ${SERVER_CONFIG_STORE}/server_acl_master_token.json <<EOL
@@ -32,6 +32,6 @@ EOL
 #EOL
 fi
 
-server_acl_agent_token.sh
+server_acl_server_agent_token.sh
 server_acl_anon.sh
-server_acl_acl_token.sh
+server_acl_client_general_token.sh

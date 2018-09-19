@@ -25,8 +25,9 @@ if [ ! -f ${SERVER_CONFIG_STORE}/server_acl_agent_acl_token.json ] || [ ! -f ${S
     if [ -z "$ACL_AGENT_TOKEN" ]; then
       echo "FATAL: error generating ACL agent token, return acl token was empty when talking the the REST endpoint - no permissions?"
     else
-      echo "setting acl agent token"
+      echo "setting acl agent token for the server"
       echo "{\"acl_agent_token\": \"${ACL_AGENT_TOKEN}\"}" > ${SERVER_CONFIG_STORE}/server_acl_agent_acl_token.json
+      echo "setting acl token for the server"
       echo "{\"acl_token\": \"${ACL_AGENT_TOKEN}\"}" > ${SERVER_CONFIG_STORE}/server_general_acl_token.json
     fi
 else

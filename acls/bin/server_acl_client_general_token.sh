@@ -7,7 +7,7 @@ set -e
 
 mkdir -p ${CLIENTS_SHARED_CONFIG_STORE}
 
-if [ ! -f ${CLIENTS_SHARED_CONFIG_STORE}/general_acl_token.json ]; then
+if [ ! -f ${CLIENTS_SHARED_CONFIG_STORE}/general_acl_token.hcl ]; then
   echo "generating consul client general ACL token for usual access"
   cat > ${SERVER_CONFIG_STORE}/policy_agents.policy <<EOL
 node_prefix "" {

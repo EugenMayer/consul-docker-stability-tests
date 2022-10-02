@@ -3,7 +3,7 @@
 shutdown ()
 {
   echo "shutdown"
-  kill $(pgrep -f 'consul agent')
+  kill -KILL $(pgrep -f 'consul agent')
 }
 
 until [ -f ${CLIENTS_SHARED_CONFIG_STORE}/.bootstrapped ]; do
@@ -12,19 +12,20 @@ until [ -f ${CLIENTS_SHARED_CONFIG_STORE}/.bootstrapped ]; do
 done;
 
 if [ -f ${CLIENTS_SHARED_CONFIG_STORE}/general_acl_token.hcl ]; then
-    ln -s ${CLIENTS_SHARED_CONFIG_STORE}/general_acl_token.hcl /consul/config/general_acl_token.hcl
+    ln -sf ${CLIENTS_SHARED_CONFIG_STORE}/general_acl_token.hcl /consul/config/general_acl_token.hcl
 else
     rm -f /consul/config/general_acl_token.hcl > /dev/null
 fi
 
 if [ -f ${CLIENTS_SHARED_CONFIG_STORE}/gossip.hcl ]; then
-    ln -s ${CLIENTS_SHARED_CONFIG_STORE}/gossip.hcl /consul/config/gossip.hcl
+    ln -sf ${CLIENTS_SHARED_CONFIG_STORE}/gossip.hcl /consul/config/gossip.hcl
 else
     rm -f /consul/config/gossip.hcl > /dev/null
 fi
 
 # traps for fast shutdown
-trap shutdown INT TERM
+trap shutdown INT TERM KILL
+
 exec docker-entrypoint.sh "$@" &
 echo "Started consul client"
 wait

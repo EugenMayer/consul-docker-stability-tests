@@ -84,5 +84,4 @@ server_acl_client_general_token.sh
 
 # it's all done, let out bootstrap no longer repeat this, see converge
 touch ${SERVER_CONFIG_STORE}/.aclsetupfinished
-touch ${SERVER_CONFIG_STORE}/.upgraded.1.13
 stopOfflineServer

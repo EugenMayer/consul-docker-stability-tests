@@ -23,9 +23,9 @@ elif [ ! -f ${SERVER_CONFIG_STORE}/.upgraded.1.13 ]; then
   rm -f ${SERVER_CONFIG_STORE}/tls.json ${SERVER_CONFIG_STORE}/server_config.json ${SERVER_CONFIG_STORE}/server_acl.json \
    ${SERVER_CONFIG_STORE}/server_acl_master_token.json ${SERVER_CONFIG_STORE}/server_acl_agent_acl_token.json ${SERVER_CONFIG_STORE}/gossip.json
 
-  echo "Recreating hcl configuration"
-  server_setup_gossip.sh
+  echo "Recreating configuration"
   server_setup_tls.sh `hostname -f`
+  server_setup_gossip.sh
   server_setup_acl.sh
 
   touch ${SERVER_CONFIG_STORE}/.upgraded.1.13

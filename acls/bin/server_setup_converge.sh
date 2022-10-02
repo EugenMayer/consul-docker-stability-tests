@@ -22,7 +22,8 @@ elif [ ! -f ${SERVER_CONFIG_STORE}/.upgraded.1.13 ]; then
   echo "Removing the entire old configuration now"
   rm -f ${SERVER_CONFIG_STORE}/tls.json ${SERVER_CONFIG_STORE}/server_config.json ${SERVER_CONFIG_STORE}/server_acl.json \
    ${SERVER_CONFIG_STORE}/server_acl_master_token.json ${SERVER_CONFIG_STORE}/server_acl_agent_acl_token.json ${SERVER_CONFIG_STORE}/gossip.json \
-   ${SERVER_CONFIG_STORE}/server_general_acl_token.json ${SERVER_CONFIG_STORE}/tls.key ${SERVER_CONFIG_STORE}/ca.crt ${SERVER_CONFIG_STORE}/cert.crt
+   ${SERVER_CONFIG_STORE}/server_general_acl_token.json ${SERVER_CONFIG_STORE}/tls.key ${SERVER_CONFIG_STORE}/ca.crt ${SERVER_CONFIG_STORE}/cert.crt \
+   ${SERVER_CONFIG_STORE}/cert.csr ${SERVER_CONFIG_STORE}/ca.srl ${SERVER_CONFIG_STORE}/ca.key
 
   echo "Recreating configuration"
   server_setup_tls.sh `hostname -f`

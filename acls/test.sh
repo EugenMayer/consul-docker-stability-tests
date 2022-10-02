@@ -1,9 +1,15 @@
 #!/bin/bash
 
-ACL_MASTER_TOKEN=`docker-compose exec server bash -l -c "cat /consul/config/server_acl_master_token.json | jq -r -M '.acl_master_token'"`
-echo "ACL_MASTER_TOKEN is ${ACL_MASTER_TOKEN}"
+# all those request work since we used the ACL_MASTER_TOKEN during the bootstrap to set acl_token on the consul server
 
-# all those request work since we used the ACL_MASTER_TOKEN durint the bootstrap to set acl_token on the consul server
+echo "----------- server: raft version"
+if docker-compose  exec server consul info| grep 'acl = enabled'; then
+  echo "[ok] acl is enabled"
+else
+  echo "[ERROR] acl is not enabled"
+  exit 1
+fi
+
 echo "----------- server: raft version"
 if docker-compose  exec server consul info| grep -a20 raft | grep 'protocol_version = 3'; then
   echo "[ok] raft is v3"
@@ -20,7 +26,7 @@ else
   exit 1
 fi
 
-echo "----------- server:  members (servers acl_token which is the master token)"
+echo "----------- server: server has access"
 if docker-compose  exec server consul members; then
   echo "[ok]"
 else
@@ -28,8 +34,8 @@ else
   exit 1
 fi
 
-echo "----------- anon access without token - member list should be empty"
-docker-compose  exec server consul members -token=anonymous
+echo "----------- anon access on server without token - member list should be empty"
+docker-compose exec server consul members -token=anonymous
 
 if docker-compose  exec server consul members | grep encrypted; then
   echo "[ERROR] list not empty - anon can access list"
@@ -38,26 +44,41 @@ else
   echo "[ok]"
 fi
 
-echo "----------- server: writing KW value"
-# this works due to our
-if docker-compose  exec server /usr/bin/curl -sS -X PUT -d 'myvalue' http://localhost:8500/v1/kv/test_value; then
+echo "----------- server: writing KV value"
+# this works due to our default token on the server
+if docker-compose  exec server consul kv put mykey myvalue; then
     echo -n  "[ok]"
 else
   echo "[ERROR] could not set KV on server using the acl_token"
   exit 1
 fi
 
-# TODO: that test does not work due to ember - its never redirected if the client does not have js support
-#echo "----------- server: cannot access ACLs using the GUI"
-## this works due to our
-#if docker-compose  exec server /usr/bin/curl -LsSk https://localhost:8501/ui/#/stable/acls ; then
-#  echo "[ERROR] GUI seems to be open and anons can access anything"
-#  exit 1
-#else
-#  echo -n  "[ok]"
-#fi
+echo "----------- server: reading KV value"
+if docker-compose  exec server consul kv get mykey; then
+    echo -n  "[ok]"
+else
+  echo "[ERROR] could not get KV on server using the acl_token"
+  exit 1
+fi
 
-echo "----------- agent client access using curl (and the acl_token)"
+echo "----------- GUI: cannot access ACLs using the GUI"
+# this works due to our
+if curl -LsfSk https://localhost:8501/v1/acl/tokens?dc=stable ; then
+  echo "[ERROR] GUI seems to be open and anons can access anything"
+  exit 1
+else
+  echo -n  "[ok]"
+fi
+
+echo "----------- client: encryption / gossip status"
+if docker-compose  exec client1 consul info| grep encrypted; then
+  echo "[ok] gossip encryption activated"
+else
+  echo "[ERROR] encryption not activated"
+  exit 1
+fi
+
+echo "----------- client: can access member list"
 if docker-compose  exec client1 consul members; then
     echo -n "[ok]"
 else
@@ -65,10 +86,9 @@ else
   exit 1
 fi
 
-
-echo "----------- agent client access (acl_token)"
-if docker-compose  exec client1 /usr/bin/curl -sS -X GET http://localhost:8500/v1/kv/test_value; then
-    echo "\n[ok]"
+echo "----------- client: can access KV read (acl_token)"
+if docker-compose  exec client1 consul kv get mykey; then
+    echo -n "[ok]"
 else
   echo "[ERROR] client1 cannot read kv value using the acl_token"
   exit 1

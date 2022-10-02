@@ -1,5 +1,4 @@
 {
-  "datacenter": "stable",
   "data_dir": "/consul/data",
   "ui": true,
   "dns_config": {

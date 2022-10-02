@@ -9,5 +9,6 @@
   },
   "retry_join": [
     "server"
-  ]
+  ],
+  "disable_update_check": true
 }

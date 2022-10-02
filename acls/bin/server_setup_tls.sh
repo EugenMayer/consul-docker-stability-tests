@@ -9,7 +9,6 @@ fi
 
 echo "Setting up tls"
 
-
 if [ -z "$1" ]; then
     echo "please pass the ip as the first parameter"
     exit 1
@@ -51,19 +50,16 @@ chown consul:consul $SSL_DIR/tls.key
 chmod 400 $SSL_DIR/tls.key
 chown consul:consul $SSL_DIR/cert.crt
 
-cat > ${SERVER_CONFIG_STORE}/tls.json <<EOL
-{
-	"key_file": "${SERVER_CONFIG_STORE}/tls.key",
-	"cert_file": "${SERVER_CONFIG_STORE}/cert.crt",
-	"ca_file": "${SERVER_CONFIG_STORE}/ca.crt",
-	"addresses": {
-		"http": "127.0.0.1",
-		"https": "0.0.0.0"
-	},
-	"ports": {
-		"http": 8500,
-		"https": 8501
-	}
+cat > ${SERVER_CONFIG_STORE}/tls.hcl <<EOL
+key_file = "${SERVER_CONFIG_STORE}/tls.key"
+cert_file = "${SERVER_CONFIG_STORE}/cert.crt"
+ca_file = "${SERVER_CONFIG_STORE}/ca.crt"
+addresses = {
+  "http" = "127.0.0.1"
+  "https" = "0.0.0.0"
+}
+ports = {
+  "http" = 8500
+  "https" = 8501
 }
 EOL
-

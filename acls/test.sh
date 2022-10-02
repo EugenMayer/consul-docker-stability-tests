@@ -1,9 +1,7 @@
 #!/bin/bash
 
-# all those request work since we used the ACL_MASTER_TOKEN during the bootstrap to set acl_token on the consul server
-
 echo "----------- server: raft version"
-if docker-compose  exec server consul info| grep 'acl = enabled'; then
+if docker-compose  exec server consul info | grep 'acl = enabled'; then
   echo "[ok] acl is enabled"
 else
   echo "[ERROR] acl is not enabled"
@@ -11,7 +9,7 @@ else
 fi
 
 echo "----------- server: raft version"
-if docker-compose  exec server consul info| grep -a20 raft | grep 'protocol_version = 3'; then
+if docker-compose  exec server consul info | grep -a20 raft | grep 'protocol_version = 3'; then
   echo "[ok] raft is v3"
 else
   echo "[ERROR] raft is not version 3"
@@ -19,7 +17,7 @@ else
 fi
 
 echo "----------- server: encryption / gossip status"
-if docker-compose  exec server consul info| grep encrypted; then
+if docker-compose  exec server consul info | grep encrypted; then
   echo "[ok] gossip encryption activated"
 else
   echo "[ERROR] encryption not activated"

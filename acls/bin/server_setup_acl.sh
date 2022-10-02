@@ -15,6 +15,7 @@ startOfflineServer() {
       echo -n '.'
       sleep 2
   done
+  echo ''
   echo 'server up'
 }
 

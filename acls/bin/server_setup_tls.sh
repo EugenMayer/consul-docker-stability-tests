@@ -17,7 +17,7 @@ fi
 ip=$1
 # Specify where we will install
 # the xip.io certificate
-SSL_DIR=${SERVER_CONFIG_STORE}
+SSL_DIR=${SERVER_CONFIG_STORE}/tls
 
 # Set our CSR variables
 SUBJ="
@@ -51,9 +51,13 @@ chmod 400 $SSL_DIR/tls.key
 chown consul:consul $SSL_DIR/cert.crt
 
 cat > ${SERVER_CONFIG_STORE}/tls.hcl <<EOL
-key_file = "${SERVER_CONFIG_STORE}/tls.key"
-cert_file = "${SERVER_CONFIG_STORE}/cert.crt"
-ca_file = "${SERVER_CONFIG_STORE}/ca.crt"
+tls {
+  defaults {
+    key_file = "${SSL_DIR}/tls.key"
+    cert_file = "${SSL_DIR}/cert.crt"
+    ca_file = "${SSL_DIR}/ca.crt"
+  }
+}
 addresses = {
   "http" = "127.0.0.1"
   "https" = "0.0.0.0"

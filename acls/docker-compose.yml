@@ -14,6 +14,7 @@ services:
       ENABLE_ACL: 1
       ENABLE_TLS: 1
       CONSUL_HTTP_TOKEN_FILE: "/consul/config/.consul_cli_token"
+      CONSUL_ALLOW_RESET_ACL: 1
     volumes:
       # those are our setup scripts
       - ./bin/server_boot.sh:/usr/local/bin/server_boot.sh
@@ -24,9 +25,8 @@ services:
       - ./bin/server_setup_converge.sh:/usr/local/bin/server_setup_converge.sh
       - ./bin/server_acl_bootstrap.sh:/usr/local/bin/server_acl_bootstrap.sh
       - ./bin/server_acl_client_general_token.sh:/usr/local/bin/server_acl_client_general_token.sh
-      - ./bin/wait-for-it.sh:/usr/local/bin/wait-for-it
       # basic server configuration
-      - ./consul-config/server_config.json:/consul/config/server_config.json
+      - ./consul-config/server_config.hcl:/consul/config/server_config.hcl
       - consul-server-data:/consul/data:rw
       - consul-server-config:/consul/config:rw
       - consul-general-client-configs:/consul/clients-general
@@ -47,7 +47,7 @@ services:
       - server
     volumes:
       - ./bin/client_boot.sh:/usr/local/bin/client_boot.sh
-      - ./consul-config/agent_config-client1.json:/consul/config/agent_config.json
+      - ./consul-config/client1_config.hcl:/consul/config/agent_config.hcl
       - consul-general-client-configs:/consul/clients-general
     networks:
       - default
@@ -62,7 +62,7 @@ services:
       - server
     volumes:
       - ./bin/client_boot.sh:/usr/local/bin/client_boot.sh
-      - ./consul-config/agent_config-client2.json:/consul/config/agent_config.json
+      - ./consul-config/client2_config.hcl:/consul/config/agent_config.hcl
       - consul-general-client-configs:/consul/clients-general
     networks:
       - default

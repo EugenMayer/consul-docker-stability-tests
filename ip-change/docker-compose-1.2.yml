@@ -1,4 +1,4 @@
-version: "2"
+version: "3"
 
 services:
   server:
@@ -7,7 +7,7 @@ services:
     environment:
       CONSUL_BIND_INTERFACE: eth0
     volumes:
-      - ./consul-config/server_config.json:/consul/config/server_config.json
+      - ./consul-config/server_config.hcl:/consul/config/server_config.hcl
       - consul-server-data:/consul/data:rw
     ports:
       - "8500:8500"

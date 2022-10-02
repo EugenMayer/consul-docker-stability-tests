@@ -1,13 +1,13 @@
-version: "2"
+version: "3"
 
 services:
   server:
-    image: 0.7.4
+    image: consul:1.13
     command: agent
     environment:
       CONSUL_BIND_INTERFACE: eth0
     volumes:
-      - ./consul-config/server_config.json:/consul/config/server_config.json
+      - ./consul-config/server_config.hcl:/consul/config/server_config.hcl
       - consul-server-data:/consul/data:rw
     ports:
       - "8500:8500"
@@ -16,7 +16,7 @@ services:
         ipv4_address: ${NETWORK_PREFIX}.254
 
   client:
-    image: 0.7.4
+    image: consul:1.0.7
     command: agent
     depends_on:
       - server

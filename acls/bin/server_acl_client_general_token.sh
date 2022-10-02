@@ -26,6 +26,8 @@ key_prefix "" {
   policy = "write"
 }
 EOL
+  # if the policy already exists, replace
+  consul acl policy delete -name agents > /dev/null 2>&1 || true
   consul acl policy create -name agents -rules @${SERVER_CONFIG_STORE}/policy_agents.policy
   ACL_AGENT_TOKEN=`consul acl token create -description "agents" -policy-name agents --format json  | jq -r -M '.SecretID'`
 	cat > ${CLIENTS_SHARED_CONFIG_STORE}/general_acl_token.hcl <<EOL

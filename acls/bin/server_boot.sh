@@ -1,8 +1,5 @@
 #!/bin/sh
 
-## ensure consul is yet not running - important due to supervisor restart
-pkill consul
-
 set -e
 
 mkdir -p ${SERVER_CONFIG_STORE}

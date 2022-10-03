@@ -17,7 +17,7 @@ if [[ ! -z "$CONSUL_HTTP_TOKEN_FILE" ]]; then
   echo "${ACL_MASTER_TOKEN}" > $CONSUL_HTTP_TOKEN_FILE
   chown consul:consul $CONSUL_HTTP_TOKEN_FILE
 else
-  # no token file path was defined, so using ENV based authentication
+  # no token file path was defined, so using ENV based authentication for the cli
   export CONSUL_HTTP_TOKEN="${ACL_MASTER_TOKEN}"
 fi
 

@@ -33,6 +33,7 @@ emailAddress=info@company.tld
 # Create our SSL directory
 # in case it doesn't exist
 mkdir -p "$SSL_DIR"
+chown consul:consul "$SSL_DIR"
 
 # Generate our Private Key, CSR and Certificate
 # consul NEEDS a CA signed certificate, since we can only trust CAs but not certificates, running into

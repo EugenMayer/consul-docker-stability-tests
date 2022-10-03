@@ -14,6 +14,9 @@ if [ -z "$ENABLE_ACL" ] || [ "$ENABLE_ACL" -eq "0" ]; then
   rm -f ${CLIENTS_SHARED_CONFIG_STORE}/general_acl_token.hcl ${SERVER_CONFIG_STORE}/server_tokens.hcl ${SERVER_CONFIG_STORE}/.aclsetupfinished
 # upgraded to 1.13+
 elif [ ! -f ${SERVER_CONFIG_STORE}/.upgraded.1.13 ]; then
+  # ensure our clients wait for us to continue to bootstrap everything first
+  rm rm -f ${CLIENTS_SHARED_CONFIG_STORE}/.bootstrapped
+
   if [ "$CONSUL_ALLOW_MAJOR_UPGRADE" -ne "1" ]; then
      echo "Detected major upgrade, but CONSUL_ALLOW_MAJOR_UPGRADE=1 not set. Failing hard"
      exit 1
@@ -34,7 +37,10 @@ elif [ ! -f ${SERVER_CONFIG_STORE}/.upgraded.1.13 ]; then
   server_setup_gossip.sh
   server_setup_acl.sh
 
+  # we have finished the upgrade, persist that
   touch ${SERVER_CONFIG_STORE}/.upgraded.1.13
+  # we are done, infor the clients now
+  touch ${CLIENTS_SHARED_CONFIG_STORE}/.bootstrapped
 elif [ ! -f ${SERVER_CONFIG_STORE}/.aclsetupfinished ]; then
   echo "WARN ACL Setup not finished (but configured). Re-configuring ACL."
   server_setup_acl.sh

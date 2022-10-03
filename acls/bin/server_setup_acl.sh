@@ -12,13 +12,26 @@ startOfflineServer() {
   docker-entrypoint.sh agent -bind 127.0.0.1 > /dev/null &
   CONSUL_PID="$!"
   echo -n "Waiting for consul server to start"
-  until curl -fq http://127.0.0.1:8500/v1/status/leader > /dev/null 2>&1 || curl -fq http://127.0.0.1:8500/v1/status/peers > /dev/null 2>&1
+  until curl -m1 -fqs http://127.0.0.1:8500/v1/status/leader > /dev/null 2>&1 && curl -m1 -fqs http://127.0.0.1:8500/v1/status/peers > /dev/null 2>&1
   do
       echo -n '.'
       sleep 2
   done
   echo ''
+
+  waitForClusterLeader
+
+  echo ''
   echo 'server up'
+}
+
+waitForClusterLeader() {
+  echo -n "Waiting for cluster leader"
+  until curl -m1 -fqs http://127.0.0.1:8500/v1/status/leader | grep 8300 > /dev/null 2>&1
+  do
+      echo -n '.'
+      sleep 1
+  done
 }
 
 stopOfflineServer()
@@ -49,8 +62,6 @@ resetAclSystem() {
   # ensure it has shutdown
   sleep 8
   startOfflineServer
-  # ensure it has started for sure and has selected a cluster leader
-  sleep 4
   set -e
 }
 

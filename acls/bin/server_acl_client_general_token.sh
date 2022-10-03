@@ -29,6 +29,7 @@ EOL
   # if the policy already exists, replace
   consul acl policy delete -name agents > /dev/null 2>&1 || true
   consul acl policy create -name agents -rules @${SERVER_CONFIG_STORE}/policy_agents.policy
+  rm -f ${SERVER_CONFIG_STORE}/policy_agents.policy
   ACL_AGENT_TOKEN=`consul acl token create -description "agents" -policy-name agents --format json  | jq -r -M '.SecretID'`
 	cat > ${CLIENTS_SHARED_CONFIG_STORE}/general_acl_token.hcl <<EOL
 acl {
@@ -38,9 +39,10 @@ acl {
 }
 EOL
   CLIENT_HTTP_TOKEN_FILE="${CLIENTS_SHARED_CONFIG_STORE}/.consul_cli_token"
+
   echo "Setting up client-token-file to '$CLIENT_HTTP_TOKEN_FILE'"
   echo "${ACL_AGENT_TOKEN}" > $CLIENT_HTTP_TOKEN_FILE
-  chown consul:consul $CLIENT_HTTP_TOKEN_FILE
+  chown consul:consul ${CLIENTS_SHARED_CONFIG_STORE}/general_acl_token.hcl $CLIENT_HTTP_TOKEN_FILE
 else
   echo "skipping acl_token setup .. already configured";
 fi

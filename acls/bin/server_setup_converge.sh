@@ -4,13 +4,15 @@ set -e
 
 echo "Server already bootstrapped - checking config and converging"
 
+# disabled ACL - cleanup configs
 if [ -z "$ENABLE_ACL" ] || [ "$ENABLE_ACL" -eq "0" ]; then
   echo "de-configuring ACL, it has been disabled"
   # de-configure ACL, no longer present
   # old legacy configs
   rm -f ${SERVER_CONFIG_STORE}/.aclanonsetup ${CLIENTS_SHARED_CONFIG_STORE}/general_acl_token.json ${SERVER_CONFIG_STORE}/server_acl_master_token.json ${SERVER_CONFIG_STORE}/server_acl_agent_acl_token.josn
   # new configs, hcl based
-  rm -f ${SERVER_CONFIG_STORE}/.aclanonsetup ${CLIENTS_SHARED_CONFIG_STORE}/general_acl_token.hcl ${SERVER_CONFIG_STORE}/server_tokens.hcl ${SERVER_CONFIG_STORE}/.aclsetupfinished
+  rm -f ${CLIENTS_SHARED_CONFIG_STORE}/general_acl_token.hcl ${SERVER_CONFIG_STORE}/server_tokens.hcl ${SERVER_CONFIG_STORE}/.aclsetupfinished
+# upgraded to 1.13+
 elif [ ! -f ${SERVER_CONFIG_STORE}/.upgraded.1.13 ]; then
   if [ "$CONSUL_ALLOW_MAJOR_UPGRADE" -ne "1" ]; then
      echo "Detected major upgrade, but CONSUL_ALLOW_MAJOR_UPGRADE=1 not set. Failing hard"
@@ -24,6 +26,9 @@ elif [ ! -f ${SERVER_CONFIG_STORE}/.upgraded.1.13 ]; then
    ${SERVER_CONFIG_STORE}/server_acl_master_token.json ${SERVER_CONFIG_STORE}/server_acl_agent_acl_token.json ${SERVER_CONFIG_STORE}/gossip.json \
    ${SERVER_CONFIG_STORE}/server_general_acl_token.json ${SERVER_CONFIG_STORE}/tls.key ${SERVER_CONFIG_STORE}/ca.crt ${SERVER_CONFIG_STORE}/cert.crt \
    ${SERVER_CONFIG_STORE}/cert.csr ${SERVER_CONFIG_STORE}/ca.srl ${SERVER_CONFIG_STORE}/ca.key ${CLIENTS_SHARED_CONFIG_STORE}/general_acl_token.json
+  # since we are going to re-create the gossip-key, we need to ensure we remove the local key-ring. Without that
+  # old clients get consfused with the new and old keyring
+  rm -fr /consul/data/local.keyring /consul/data/remote.keyring
   echo "Recreating configuration"
   server_setup_tls.sh `hostname -f`
   server_setup_gossip.sh

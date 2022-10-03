@@ -32,6 +32,7 @@ acl {
   }
 }
 EOL
+chown consul:consul ${SERVER_CONFIG_STORE}/server_tokens.hcl
 
 # to reload the config to apply all the above
 consul reload

@@ -5,6 +5,8 @@ set -e
 CONSUL_PID=
 ACL_MASTER_TOKEN=
 
+# sets CONSUL_PIDm which you can use to stop the server again
+# waits for the server to come up before continuing
 startOfflineServer() {
   echo "starting server in local 127.0.0.1 for ACL setup only"
   docker-entrypoint.sh agent -bind 127.0.0.1 > /dev/null &
@@ -26,8 +28,10 @@ stopOfflineServer()
 }
 
 boostrapAcl() {
+  set +e
   OUTPUT=$(CONSUL_HTTP_TOKEN_FILE= consul acl bootstrap --format=json)
   ACL_MASTER_TOKEN=$(echo $OUTPUT | jq -r -M '.SecretID')
+  set -e
 }
 
 resetAclSystem() {
@@ -42,12 +46,16 @@ resetAclSystem() {
   echo "ACL RESET INDEX: $RESET_INDEX"
   echo $RESET_INDEX > /consul/data/acl-bootstrap-reset
   stopOfflineServer
-  sleep 4
+  # ensure it has shutdown
+  sleep 8
   startOfflineServer
+  # ensure it has started for sure and has selected a cluster leader
+  sleep 4
   set -e
 }
 
 echo "- Enabling ACL support"
+# we fist need to enable ACL support, prior starting the server
 cat > ${SERVER_CONFIG_STORE}/server_acl_base.hcl <<EOL
 datacenter = "stable"
 primary_datacenter = "stable"
@@ -59,17 +67,24 @@ acl {
 }
 EOL
 
+chown consul:consul ${SERVER_CONFIG_STORE}/server_acl_base.hcl
+
+# start the server with enabled ACL support, so we can bootstrap ACL
 startOfflineServer
 
-boostrapAcl || true
+# try to bootstrap, if it succeeds ACL_MASTER_TOKEN will be set
+boostrapAcl
 
 if [[ -z "$ACL_MASTER_TOKEN" ]]; then
+  # ACL cannot be bootstrapped, most probably it has been bootstrapped beforehand
   if [[ -n "$CONSUL_ALLOW_RESET_ACL" ]]; then
+    # reset ACL system
     resetAclSystem
+    # now should we be able to boostrap
     boostrapAcl
 
     if [[ -z "$ACL_MASTER_TOKEN" ]]; then
-      echo "failed resetting"
+      echo "failed resetting and rebootstrapping - we cannot recover automatically, please try yourself"
       exit 1
     fi
   else

@@ -10,7 +10,7 @@ fi
 echo "- Enable gossip encryption"
 
 if [ ! -f ${SERVER_CONFIG_STORE}/gossip.hcl ]; then
-	GOSSIP_KEY=`consul keygen`
+	GOSSIP_KEY=$(consul keygen)
 	cat > ${SERVER_CONFIG_STORE}/gossip.hcl <<EOL
 encrypt = "${GOSSIP_KEY}"
 EOL
@@ -18,3 +18,5 @@ EOL
 else
 	cp ${SERVER_CONFIG_STORE}/gossip.hcl ${CLIENTS_SHARED_CONFIG_STORE}/gossip.hcl
 fi
+
+chown consul:consul ${SERVER_CONFIG_STORE}/gossip.hcl ${CLIENTS_SHARED_CONFIG_STORE}/gossip.hcl

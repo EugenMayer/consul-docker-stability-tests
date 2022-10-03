@@ -46,9 +46,7 @@ cp ${SSL_DIR}/ca.crt /usr/local/share/ca-certificates/consul-ca.crt
 # https://github.com/gliderlabs/docker-alpine/issues/30#issuecomment-372020089
 update-ca-certificates 2>/dev/null || true
 
-chown consul:consul $SSL_DIR/tls.key
 chmod 400 $SSL_DIR/tls.key
-chown consul:consul $SSL_DIR/cert.crt
 
 cat > ${SERVER_CONFIG_STORE}/tls.hcl <<EOL
 tls {
@@ -67,3 +65,6 @@ ports = {
   "https" = 8501
 }
 EOL
+
+chown consul:consul $SSL_DIR/cert.crt $SSL_DIR/ca.crt $SSL_DIR/ca.key $SSL_DIR/tls.key ${SERVER_CONFIG_STORE}/tls.hcl
+

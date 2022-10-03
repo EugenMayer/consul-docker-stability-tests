@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=${1:-0.7}
+VERSION=${1:-1.2}
 
 echo "STARTING STACK WItH CONSUL IP1"
 docker-compose -f docker-compose-$VERSION.yml up -d

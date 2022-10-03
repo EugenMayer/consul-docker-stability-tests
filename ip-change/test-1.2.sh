@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=1.0
+VERSION=1.2
 ./start-ip1.sh ${VERSION}
 sleep 10s
 ./start-ip2.sh ${VERSION}

@@ -3,7 +3,7 @@ version: "2"
 services:
   server:
     image: consul:${CONSUL_VERSION}
-    entrypoint: "server_setup.sh"
+    entrypoint: "server_boot.sh"
     command: "agent"
     hostname : consulserver1
     environment:
@@ -13,18 +13,20 @@ services:
       ENABLE_GOSSIP: 1
       ENABLE_ACL: 1
       ENABLE_TLS: 1
+      CONSUL_HTTP_TOKEN_FILE: "/consul/config/.consul_cli_token"
+      CONSUL_ALLOW_RESET_ACL: 1
     volumes:
       # those are our setup scripts
-      - ./bin/server_setup.sh:/usr/local/bin/server_setup.sh
-      - ./bin/server_acl_anon.sh:/usr/local/bin/server_acl_anon.sh
+      - ./bin/server_boot.sh:/usr/local/bin/server_boot.sh
+      - ./bin/server_setup_firstboot.sh:/usr/local/bin/server_setup_firstboot.sh
+      - ./bin/server_setup_acl.sh:/usr/local/bin/server_setup_acl.sh
+      - ./bin/server_setup_gossip.sh:/usr/local/bin/server_setup_gossip.sh
+      - ./bin/server_setup_tls.sh:/usr/local/bin/server_setup_tls.sh
+      - ./bin/server_setup_converge.sh:/usr/local/bin/server_setup_converge.sh
+      - ./bin/server_acl_bootstrap.sh:/usr/local/bin/server_acl_bootstrap.sh
       - ./bin/server_acl_client_general_token.sh:/usr/local/bin/server_acl_client_general_token.sh
-      - ./bin/server_acl_server_agent_token.sh:/usr/local/bin/server_acl_server_agent_token.sh
-      - ./bin/server_acl.sh:/usr/local/bin/server_acl.sh
-      - ./bin/server_gossip.sh:/usr/local/bin/server_gossip.sh
-      - ./bin/server_tls.sh:/usr/local/bin/server_tls.sh
-      - ./bin/wait-for-it.sh:/usr/local/bin/wait-for-it
       # basic server configuration
-      - ./consul-config/server_config.json:/consul/config/server_config.json
+      - ./consul-config/server_config.hcl:/consul/config/server_config.hcl
       - consul-server-data:/consul/data:rw
       - consul-server-config:/consul/config:rw
       - consul-general-client-configs:/consul/clients-general
@@ -37,30 +39,30 @@ services:
 
   client1:
     image: consul:${CONSUL_VERSION}
-    entrypoint: client_setup.sh
+    entrypoint: client_boot.sh
     command: agent
     environment:
       CLIENTS_SHARED_CONFIG_STORE: /consul/clients-general
     depends_on:
       - server
     volumes:
-      - ./bin/client_setup.sh:/usr/local/bin/client_setup.sh
-      - ./consul-config/agent_config-client1.json:/consul/config/agent_config.json
+      - ./bin/client_boot.sh:/usr/local/bin/client_boot.sh
+      - ./consul-config/client1_config.hcl:/consul/config/agent_config.hcl
       - consul-general-client-configs:/consul/clients-general
     networks:
       - default
 
   client2:
     image: consul:${CONSUL_VERSION}
-    entrypoint: client_setup.sh
+    entrypoint: client_boot.sh
     command: agent
     environment:
       CLIENTS_SHARED_CONFIG_STORE: /consul/clients-general
     depends_on:
       - server
     volumes:
-      - ./bin/client_setup.sh:/usr/local/bin/client_setup.sh
-      - ./consul-config/agent_config-client2.json:/consul/config/agent_config.json
+      - ./bin/client_boot.sh:/usr/local/bin/client_boot.sh
+      - ./consul-config/client2_config.hcl:/consul/config/agent_config.hcl
       - consul-general-client-configs:/consul/clients-general
     networks:
       - default

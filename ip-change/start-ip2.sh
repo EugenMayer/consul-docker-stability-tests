@@ -1,8 +1,8 @@
 #!/bin/bash
 
-VERSION=${1:-0.7}
+VERSION=${1:-1.2}
 
-echo "STARTING STACK WItH CONSUL IP2"
+echo "STARTING STACK WITH CONSUL IP2"
 docker-compose -f docker-compose-${VERSION}.yml down
 
 echo "starting stack with new ip - should be broken"

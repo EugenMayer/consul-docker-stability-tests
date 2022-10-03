@@ -12,7 +12,7 @@ startOfflineServer() {
   docker-entrypoint.sh agent -bind 127.0.0.1 > /dev/null &
   CONSUL_PID="$!"
   echo -n "Waiting for consul server to start"
-  until curl -f http://127.0.0.1:8500/v1/status/leader > /dev/null 2>&1
+  until curl -fq http://127.0.0.1:8500/v1/status/leader > /dev/null 2>&1 || curl -fq http://127.0.0.1:8500/v1/status/peers > /dev/null 2>&1
   do
       echo -n '.'
       sleep 2

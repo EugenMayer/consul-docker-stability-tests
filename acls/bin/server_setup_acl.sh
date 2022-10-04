@@ -5,7 +5,7 @@ set -e
 CONSUL_PID=
 ACL_MASTER_TOKEN=
 
-# sets CONSUL_PIDm which you can use to stop the server again
+# sets CONSUL_PID which you can use to stop the server again
 # waits for the server to come up before continuing
 startOfflineServer() {
   echo "starting server in local 127.0.0.1 for ACL setup only"
@@ -59,8 +59,7 @@ resetAclSystem() {
   echo "ACL RESET INDEX: $RESET_INDEX"
   echo $RESET_INDEX > /consul/data/acl-bootstrap-reset
   stopOfflineServer
-  # ensure it has shutdown
-  sleep 8
+  sleep 2
   startOfflineServer
   set -e
 }
@@ -109,6 +108,6 @@ fi
 server_acl_bootstrap.sh $ACL_MASTER_TOKEN
 server_acl_client_general_token.sh
 
-# it's all done, let out bootstrap no longer repeat this, see converge
+# it's all done, let our bootstrap no longer repeat this, see converge
 touch ${SERVER_CONFIG_STORE}/.aclsetupfinished
 stopOfflineServer

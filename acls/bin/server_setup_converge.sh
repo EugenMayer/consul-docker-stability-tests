@@ -39,7 +39,7 @@ elif [ ! -f ${SERVER_CONFIG_STORE}/.upgraded.1.13 ]; then
 
   # we have finished the upgrade, persist that
   touch ${SERVER_CONFIG_STORE}/.upgraded.1.13
-  # we are done, infor the clients now
+  # we are done, inform the clients now
   touch ${CLIENTS_SHARED_CONFIG_STORE}/.bootstrapped
 elif [ ! -f ${SERVER_CONFIG_STORE}/.aclsetupfinished ]; then
   echo "WARN ACL Setup not finished (but configured). Re-configuring ACL."

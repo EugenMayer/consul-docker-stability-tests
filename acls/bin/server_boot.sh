@@ -20,6 +20,6 @@ else
   server_setup_firstboot.sh
 fi
 
-# normal startup
+# continue normal startup
 exec docker-entrypoint.sh "$@"
 

@@ -2,8 +2,8 @@
 
 set -e
 
-# generates an acl_token with all usual ops a agent client need to fully utilize the consul server
-# stores it on a share volume so it can be consumed by the actual consul agent clients
+# Generates an acl_token with all usual ops an agent client needs to fully utilize the consul server.
+# Stores it on a shared volume so it can be consumed by the actual consul agent clients.
 
 mkdir -p ${CLIENTS_SHARED_CONFIG_STORE}
 

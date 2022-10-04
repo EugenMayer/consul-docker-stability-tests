@@ -16,7 +16,7 @@ else
   server_setup_acl.sh
 fi
 
-# that does secure we do not rerun this initial bootstrap configuration
+# secure we do not rerun the initial bootstrap configuration
 touch ${SERVER_CONFIG_STORE}/.firstsetup
 
 # tell our clients they can startup, finding the configuration they need on the shared volume

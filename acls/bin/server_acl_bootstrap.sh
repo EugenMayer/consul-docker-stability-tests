@@ -21,8 +21,8 @@ else
   export CONSUL_HTTP_TOKEN="${ACL_MASTER_TOKEN}"
 fi
 
-# setup out initial bootstrap token and the agent token
-# FIXME: agent does not work on our server, it does only work for the clients. Means, the the consul cli on the server
+# setup our initial bootstrap token and the agent token
+# FIXME: agent does not work on our server, it does only work for the clients. Meaning, the consul CLI on the server
 #  will not utilize the agent token to talk to the server. On the clients, this does work
 cat > ${SERVER_CONFIG_STORE}/server_tokens.hcl <<EOL
 acl {

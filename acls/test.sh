@@ -1,6 +1,6 @@
 #!/bin/bash
 
-max_retry=50
+max_retry=120
 counter=0
 
 echo "Waiting for setup to come up (${max_retry}s)."

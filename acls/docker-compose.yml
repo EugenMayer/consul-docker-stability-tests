@@ -46,8 +46,6 @@ services:
       - ./bin/client_boot.sh:/usr/local/bin/client_boot.sh
       - ./consul-config/client1_config.hcl:/consul/config/agent_config.hcl
       - consul-general-client-configs:/consul/clients-general
-    networks:
-      - default
 
   client2:
     image: consul:${CONSUL_VERSION}
@@ -61,8 +59,6 @@ services:
       - ./bin/client_boot.sh:/usr/local/bin/client_boot.sh
       - ./consul-config/client2_config.hcl:/consul/config/agent_config.hcl
       - consul-general-client-configs:/consul/clients-general
-    networks:
-      - default
 
 volumes:
   logs:

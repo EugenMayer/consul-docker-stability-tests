@@ -1,5 +1,8 @@
 # WAT
 
+[![test-acls](https://github.com/EugenMayer/consul-docker-stability-tests/actions/workflows/build.yml/badge.svg)](https://github.com/EugenMayer/consul-docker-stability-tests/actions/workflows/build.yml)
+
+
 Different test to test the stability of different aspects with consul under a docker stack environment.
 
 The ACL variant can also be used as a production full-auto configuration startup. It supports gossip, TLS and ACLs to make the

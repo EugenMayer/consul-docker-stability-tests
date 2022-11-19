@@ -3,10 +3,10 @@
 max_retry=50
 counter=0
 
-echo "Waiting for setup to come up ($max_retrys)."
+echo "Waiting for setup to come up (${max_retry}s)."
 until `docker-compose exec server consul members 2>&1 | grep client1 > /dev/null 2>&1`
 do
-   [[ counter -eq $max_retry ]] && echo "Failed!" && exit 1
+   [[ counter -eq $max_retry ]] && echo "Failed!" && docker-compose logs && exit 1
    echo -n .
    sleep 1
    ((counter++))

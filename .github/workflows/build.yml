@@ -16,7 +16,4 @@ jobs:
       - shell: bash
         run: |
           cd acls
-          docker-compose up -d
-          # waiting for the stack to start up
-          echo "running tests"
-          ./test.sh 
+          make test

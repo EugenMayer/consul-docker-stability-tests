@@ -40,6 +40,5 @@ adjust `.env` CONSUL_VERSION
 
 ```
 docker-compose up -d
-# wait for about 10-20 second
 ./test.sh
 ```

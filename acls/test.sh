@@ -1,5 +1,17 @@
 #!/bin/bash
 
+max_retry=20
+counter=0
+
+echo "Waiting for setup to come up."
+until `docker-compose exec server consul members 2>&1 | grep client1 > /dev/null 2>&1`
+do
+   [[ counter -eq $max_retry ]] && echo "Failed!" && exit 1
+   echo -n .
+   sleep 1
+   ((counter++))
+done
+
 echo "----------- server: raft version"
 if docker-compose  exec server consul info | grep 'acl = enabled'; then
   echo "[ok] acl is enabled"

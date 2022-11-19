@@ -33,9 +33,6 @@ services:
     ports:
       - "8500:8500" #http, but will not be accessible ( should not be, we locked it down )
       - "8501:8501" #https
-    networks:
-      default:
-        ipv4_address: ${NETWORK_PREFIX}.254
 
   client1:
     image: consul:${CONSUL_VERSION}
@@ -82,9 +79,3 @@ volumes:
     driver: local
   db:
     driver: local
-
-networks:
-  default:
-    ipam:
-      config:
-        - subnet: ${NETWORK_PREFIX}.0/24

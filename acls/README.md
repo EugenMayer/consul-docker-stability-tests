@@ -1,5 +1,7 @@
 # WAT 
 
+[![test-acls](https://github.com/EugenMayer/consul-docker-stability-tests/actions/workflows/build.yml/badge.svg)](https://github.com/EugenMayer/consul-docker-stability-tests/actions/workflows/build.yml)
+
 Production boilerplate and ACL test at the same time
 
 ## Using as your boilerplate
@@ -39,6 +41,9 @@ adjust `.env` CONSUL_VERSION
 ## Running the test yourself
 
 ```
+make test
+
+# or manually
 docker-compose up -d
 ./test.sh
 ```

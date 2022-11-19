@@ -1,9 +1,9 @@
 #!/bin/bash
 
-max_retry=20
+max_retry=30
 counter=0
 
-echo "Waiting for setup to come up."
+echo "Waiting for setup to come up (30s)."
 until `docker-compose exec server consul members 2>&1 | grep client1 > /dev/null 2>&1`
 do
    [[ counter -eq $max_retry ]] && echo "Failed!" && exit 1

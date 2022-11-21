@@ -1,4 +1,4 @@
-version: "2"
+version: "3"
 
 services:
   server:
@@ -6,6 +6,11 @@ services:
     entrypoint: "server_boot.sh"
     command: "agent"
     hostname : consulserver1
+    healthcheck:
+      test: [ "CMD", "curl", "-fIkL", "https://localhost:8501" ]
+      interval: 20s
+      timeout: 2s
+      retries: 2
     environment:
       SERVER_CONFIG_STORE: /consul/config
       CLIENTS_SHARED_CONFIG_STORE: /consul/clients-general
@@ -36,6 +41,7 @@ services:
 
   client1:
     image: consul:${CONSUL_VERSION}
+    restart: on-failure
     entrypoint: client_boot.sh
     command: agent
     environment:
@@ -49,6 +55,7 @@ services:
 
   client2:
     image: consul:${CONSUL_VERSION}
+    restart: on-failure
     entrypoint: client_boot.sh
     command: agent
     environment:

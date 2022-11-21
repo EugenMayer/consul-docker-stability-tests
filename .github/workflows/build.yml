@@ -14,7 +14,7 @@ jobs:
       - name: start stack
         run: |
           cd acls 
-          docker-compose --version
+          docker-compose up -d
       - name: run tests
         run: |
           cd acls

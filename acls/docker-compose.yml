@@ -5,7 +5,7 @@ services:
     image: consul:${CONSUL_VERSION}
     entrypoint: "server_boot.sh"
     command: "agent"
-    hostname : consulserver1
+    hostname : server1
     healthcheck:
       test: [ "CMD", "curl", "-fIkL", "https://localhost:8501" ]
       interval: 20s
@@ -41,6 +41,7 @@ services:
 
   client1:
     image: consul:${CONSUL_VERSION}
+    hostname: client1
     restart: on-failure
     entrypoint: client_boot.sh
     command: agent
@@ -55,6 +56,7 @@ services:
 
   client2:
     image: consul:${CONSUL_VERSION}
+    hostname: client2
     restart: on-failure
     entrypoint: client_boot.sh
     command: agent
@@ -68,8 +70,6 @@ services:
       - consul-general-client-configs:/consul/clients-general
 
 volumes:
-  logs:
-    driver: local
   consul-server-data:
     driver: local
   consul-client1-data:
@@ -80,5 +80,4 @@ volumes:
     driver: local
   consul-general-client-configs:
     driver: local
-  db:
-    driver: local
+
